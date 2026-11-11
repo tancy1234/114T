@@ -1,15 +1,14 @@
 import { verses } from "./verses.js";
 
-
 const randomVerseBack = document.getElementById("random-verse-back");
 const randomVerseTrack = document.getElementById("random-verse-track");
 const randomVerseHint = document.getElementById("random-verse-hint");
-
-const randomVerseStage =
-    document.querySelector(".random-verse-stage");
+const randomVerseStage = document.querySelector(".random-verse-stage");
 
 let randomVerseRunning = true;
-let selectedCard = null;
+let autoScrollPaused = false;
+let autoScrollResumeTimer = null;
+let lastTime = 0;
 
 function shuffleVerses() {
     const shuffled = [...verses];
@@ -88,32 +87,25 @@ function createCards() {
     randomVerseTrack.innerHTML = "";
 
     const shuffled = shuffleVerses();
-
-    /*
-     * Create more cards than visible.
-     * This allows the list to continuously move.
-     */
     const cardsToCreate = 12;
 
     for (let i = 0; i < cardsToCreate; i++) {
-
         const verse = shuffled[i % shuffled.length];
-
         const card = createCard(verse, i);
 
         randomVerseTrack.appendChild(card);
     }
 }
 
+function pauseAutoScroll() {
+    autoScrollPaused = true;
 
-function startScrolling() {
-    randomVerseRunning = true;
+    clearTimeout(autoScrollResumeTimer);
+
+    autoScrollResumeTimer = setTimeout(function() {
+        autoScrollPaused = false;
+    }, 1200);
 }
-
-function stopScrolling() {
-    randomVerseRunning = false;
-}
-
 
 function selectCard(card) {
     pauseAutoScroll();
@@ -149,45 +141,21 @@ randomVerseBack.addEventListener("click", function() {
     window.location.href = "index.html";
 });
 
-createCards();
-
-let autoScrollAnimation = null;
-let lastTime = 0;
-let autoScrollPaused = false;
-
-function autoScroll(timestamp) {
-    if (!lastTime) lastTime = timestamp;
-
-    const delta = timestamp - lastTime;
-    lastTime = timestamp;
-
-    if (!autoScrollPaused && randomVerseRunning) {
-        randomVerseStage.scrollTop += delta * 0.025;
-    }
-
-    autoScrollAnimation = requestAnimationFrame(autoScroll);
-}
-
 randomVerseStage.addEventListener("touchstart", function() {
-    autoScrollPaused = true;
+    pauseAutoScroll();
 });
 
-randomVerseStage.addEventListener("touchend", function() {
-    setTimeout(function() {
-        autoScrollPaused = false;
-    }, 1200);
+randomVerseStage.addEventListener("touchmove", function() {
+    pauseAutoScroll();
+});
+
+randomVerseStage.addEventListener("wheel", function() {
+    pauseAutoScroll();
 });
 
 randomVerseStage.addEventListener("mousedown", function() {
-    autoScrollPaused = true;
+    pauseAutoScroll();
 });
-
-randomVerseStage.addEventListener("mouseup", function() {
-    setTimeout(function() {
-        autoScrollPaused = false;
-    }, 1200);
-});
-
 
 randomVerseStage.addEventListener("mousemove", function(event) {
     if (event.buttons) {
@@ -195,14 +163,26 @@ randomVerseStage.addEventListener("mousemove", function(event) {
     }
 });
 
-autoScrollAnimation = requestAnimationFrame(autoScroll);
+randomVerseStage.addEventListener("mouseup", function() {
+    pauseAutoScroll();
+});
 
-function pauseAutoScroll() {
-    autoScrollPaused = true;
+function autoScroll(timestamp) {
+    if (!lastTime) {
+        lastTime = timestamp;
+    }
 
-    clearTimeout(autoScrollResumeTimer);
+    const delta = timestamp - lastTime;
 
-    autoScrollResumeTimer = setTimeout(function() {
-        autoScrollPaused = false;
-    }, 1200);
+    lastTime = timestamp;
+
+    if (!autoScrollPaused && randomVerseRunning) {
+        randomVerseStage.scrollTop += delta * 0.025;
+    }
+
+    requestAnimationFrame(autoScroll);
 }
+
+createCards();
+
+requestAnimationFrame(autoScroll);

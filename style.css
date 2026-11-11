@@ -1769,7 +1769,10 @@ body {
     width:100%;
     height:calc(100vh - 125px);
     height:calc(100dvh - 125px);
-    overflow:hidden;
+    overflow-y:auto;
+    overflow-x:hidden;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior-y:contain;
 }
 
 .random-verse-stage::before,
@@ -1818,21 +1821,7 @@ body {
     padding:25px 0;
 }
 
-.random-verse-track.scrolling{
-    animation:verseTrackScroll 24s linear infinite;
-}
 
-@keyframes verseTrackScroll{
-
-    from{
-        transform:translateY(0);
-    }
-
-    to{
-        transform:translateY(-1100px);
-    }
-
-}
 
 
 /* ================================

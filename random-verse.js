@@ -1,8 +1,12 @@
 import { verses } from "./verses.js";
 
+
 const randomVerseBack = document.getElementById("random-verse-back");
 const randomVerseTrack = document.getElementById("random-verse-track");
 const randomVerseHint = document.getElementById("random-verse-hint");
+
+const randomVerseStage =
+    document.querySelector(".random-verse-stage");
 
 let randomVerseRunning = true;
 let selectedCard = null;
@@ -101,44 +105,44 @@ function createCards() {
     }
 }
 
+
 function startScrolling() {
-    randomVerseTrack.classList.add("scrolling");
+    randomVerseRunning = true;
 }
 
 function stopScrolling() {
     randomVerseRunning = false;
-
-    randomVerseTrack.classList.remove("scrolling");
 }
 
+
 function selectCard(card) {
+    pauseAutoScroll();
 
-    if (!randomVerseRunning) return;
+    if (card.classList.contains("flipped")) {
+        card.classList.remove("flipped");
+        card.classList.remove("selected");
 
-    selectedCard = card;
+        randomVerseHint.textContent = "✨ 点击一张卡片";
+        return;
+    }
 
-    stopScrolling();
+    const flippedCards =
+        randomVerseTrack.querySelectorAll(".random-verse-card.flipped");
 
-    randomVerseHint.textContent =
-        "♡ 你选择了这一节";
-
-    const allCards =
-        randomVerseTrack.querySelectorAll(".random-verse-card");
-
-    allCards.forEach(function(otherCard) {
-
-        if (otherCard !== card) {
-            otherCard.classList.add("dimmed");
-            otherCard.style.pointerEvents = "none";
-        }
-
+    flippedCards.forEach(function(otherCard) {
+        otherCard.classList.remove("flipped");
+        otherCard.classList.remove("selected");
     });
 
     card.classList.add("selected");
 
+    randomVerseHint.textContent = "♡ 你选择了这一节";
+
     setTimeout(function() {
-        card.classList.add("flipped");
-    }, 150);
+        if (card.classList.contains("selected")) {
+            card.classList.add("flipped");
+        }
+    }, 100);
 }
 
 randomVerseBack.addEventListener("click", function() {
@@ -146,4 +150,59 @@ randomVerseBack.addEventListener("click", function() {
 });
 
 createCards();
-startScrolling();
+
+let autoScrollAnimation = null;
+let lastTime = 0;
+let autoScrollPaused = false;
+
+function autoScroll(timestamp) {
+    if (!lastTime) lastTime = timestamp;
+
+    const delta = timestamp - lastTime;
+    lastTime = timestamp;
+
+    if (!autoScrollPaused && randomVerseRunning) {
+        randomVerseStage.scrollTop += delta * 0.025;
+    }
+
+    autoScrollAnimation = requestAnimationFrame(autoScroll);
+}
+
+randomVerseStage.addEventListener("touchstart", function() {
+    autoScrollPaused = true;
+});
+
+randomVerseStage.addEventListener("touchend", function() {
+    setTimeout(function() {
+        autoScrollPaused = false;
+    }, 1200);
+});
+
+randomVerseStage.addEventListener("mousedown", function() {
+    autoScrollPaused = true;
+});
+
+randomVerseStage.addEventListener("mouseup", function() {
+    setTimeout(function() {
+        autoScrollPaused = false;
+    }, 1200);
+});
+
+
+randomVerseStage.addEventListener("mousemove", function(event) {
+    if (event.buttons) {
+        pauseAutoScroll();
+    }
+});
+
+autoScrollAnimation = requestAnimationFrame(autoScroll);
+
+function pauseAutoScroll() {
+    autoScrollPaused = true;
+
+    clearTimeout(autoScrollResumeTimer);
+
+    autoScrollResumeTimer = setTimeout(function() {
+        autoScrollPaused = false;
+    }, 1200);
+}

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CG Group</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script type="module">
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+        import {
+            getAuth
+        } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+        import {
+            getFirestore
+        } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+
+        const firebaseConfig = {
+        apiKey: "AIzaSyD80gzfZROJtJHMfvbdQ3NJNvGloTm40rY",
+        authDomain: "t-1101d.firebaseapp.com",
+        projectId: "t-1101d",
+        storageBucket: "t-1101d.firebasestorage.app",
+        messagingSenderId: "1013651721508",
+        appId: "1:1013651721508:web:72c6f969aa786734de77b1"
+        };
+
+
+        const app = initializeApp(firebaseConfig);
+
+        const auth = getAuth(app);
+
+        const db = getFirestore(app);
+
+
+        window.firebaseApp = app;
+        window.firebaseAuth = auth;
+        window.firebaseDB = db;
+    </script>
+
+    <script type="module" src="script.js"></script>
+</head>
+
+<body>
+
+    <!-- Opening Page -->
+    <section id="opening-page" class="opening-page">
+
+        <div class="opening-content">
+
+            <div class="opening-decoration">🌸</div>
+
+            <h1>我们的 CG Group</h1>
+
+            <p>
+                一起成长，一起分享，<br>
+                一起走过每一个星期。
+            </p>
+
+            <button id="open-button">
+                Open
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- Login Page -->
+    <section id="login-page" class="login-page">
+
+        <div class="login-card">
+
+            <div class="login-decoration">
+                🌸
+            </div>
+
+            <h1>欢迎回来</h1>
+
+            <p>登录我们的 CG Group ♡</p>
+
+
+            <!-- Google Login -->
+
+            <button id="google-login-button" class="google-login-button">
+                <span>G</span>
+                使用 Google 登录
+            </button>
+
+
+            <div class="login-divider">
+                <span>或者</span>
+            </div>
+
+
+            <!-- Email Login -->
+
+            <input
+                type="email"
+                id="login-email"
+                placeholder="Email"
+            >
+
+            <input
+                type="password"
+                id="login-password"
+                placeholder="Password"
+            >
+
+
+            <button id="login-button" class="login-button">
+                Login
+            </button>
+
+
+            <p class="switch-text">
+                还没有账号？
+                <button id="show-signup-button">
+                    Sign Up
+                </button>
+            </p>
+
+
+            <!-- Sign Up Form -->
+
+            <div id="signup-form">
+
+                <div class="form-title">
+                    创建账号
+                </div>
+
+                <input
+                    type="text"
+                    id="signup-username"
+                    placeholder="Username"
+                >
+
+                <input
+                    type="email"
+                    id="signup-email"
+                    placeholder="Email"
+                >
+
+                <input
+                    type="password"
+                    id="signup-password"
+                    placeholder="Password"
+                >
+
+                <button id="signup-button">
+                    Sign Up
+                </button>
+
+                <p class="switch-text">
+                    已经有账号？
+                    <button id="show-login-button">
+                        Login
+                    </button>
+                </p>
+
+            </div>
+
+
+            <p id="auth-message"></p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Username Setup Page -->
+    <section id="username-page" class="username-page">
+
+        <div class="username-card">
+
+            <div class="username-decoration">
+                🌸
+            </div>
+
+            <h1>欢迎加入 CG Group ♡</h1>
+
+            <p>
+                第一次登录，请设置一个 Username。
+            </p>
+
+            <input
+                type="text"
+                id="username-input"
+                placeholder="输入你的 Username"
+                maxlength="20"
+            >
+
+            <button id="save-username-button">
+                Continue
+            </button>
+
+            <p id="username-message"></p>
+
+        </div>
+
+    </section>
+
+    <!-- Main Page -->
+    <!-- Main Page -->
+    <main id="main-page" class="main-page">
+
+        <!-- Sticky Navbar -->
+        <!-- ================================
+            Navbar
+        ================================ -->
+
+        <nav class="navbar">
+            <div class="navbar-inner">
+                <div class="navbar-logo">
+                    🌸 <span>CG Group</span>
+                </div>
+
+                <div class="navbar-actions">
+                    <button id="online-button" class="online-button">
+                        🟢
+                    </button>
+
+                    <button id="profile-button" class="profile-button">
+                        👤
+                    </button>
+
+                    <button id="menu-button" class="menu-button">
+                        ☰
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- ================================
+                Navigation Menu
+            ================================= -->
+
+            <div id="nav-menu" class="nav-menu">
+
+                <a href="#daily-verse">
+                    <span>📖</span>
+                    每日经文
+                </a>
+
+                <a href="#members">
+                    <span>👥</span>
+                    我们的成员
+                </a>
+
+                <a href="#leaderboard">
+                    <span>🏆</span>
+                    排行榜 & Quiz
+                </a>
+
+                <a href="#memories">
+                    <span>📸</span>
+                    我们的回忆
+                </a>
+
+                <a href="#user-post">
+                    <span>💬</span>
+                    User Post
+                </a>
+
+            </div>
+
+
+            <!-- ================================
+                Profile Card
+            ================================= -->
+
+            <div
+                id="profile-card"
+                class="profile-card"
+            >
+
+                <div class="profile-header">
+
+                    <div class="profile-avatar">
+                        👤
+                    </div>
+
+                    <div class="profile-name">
+                        <span class="profile-label">
+                            Username
+                        </span>
+
+                        <h3 id="profile-username">
+                            Username
+                        </h3>
+                    </div>
+
+                </div>
+
+
+                <!-- Stats -->
+
+                <div class="profile-stats">
+
+                    <div class="profile-stat">
+
+                        <div class="stat-icon">
+                            🔥
+                        </div>
+
+                        <div class="stat-value">
+                            <span id="profile-checkin">
+                                0
+                            </span>
+                        </div>
+
+                        <div class="stat-label">
+                            签到次数
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-stat">
+
+                        <div class="stat-icon">
+                            📖
+                        </div>
+
+                        <div class="stat-value">
+                            <span id="profile-quiz">
+                                0
+                            </span>
+                        </div>
+
+                        <div class="stat-label">
+                            Quiz Correct
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Level -->
+
+                <div class="profile-level">
+
+                    <div class="level-top">
+
+                        <span>
+                            Level
+                            <strong id="profile-level">
+                                1
+                            </strong>
+                        </span>
+
+                        <span id="profile-xp-text">
+                            0 / 100 XP
+                        </span>
+
+                    </div>
+
+
+                    <div class="level-bar">
+
+                        <div
+                            id="profile-level-progress"
+                            class="level-progress"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="online-card" class="online-card">
+                <div class="online-card-header">
+                    <span>🟢</span>
+                    <div>
+                        <strong>Online Now</strong>
+                        <small id="online-count">0 people online</small>
+                    </div>
+                </div>
+
+                <div id="online-list" class="online-list">
+                    <div class="online-loading">Loading...</div>
+                </div>
+            </div>
+
+        </nav>
+
+        <header class="hero">
+
+            <div class="hero-decoration">🌷</div>
+
+            <h1>我们的 CG Group</h1>
+
+            <p>欢迎来到我们的 CG 小天地 ♡</p>
+
+        </header>
+
+        <!-- ================================
+            Daily Login
+        ================================ -->
+
+        <section id="daily-login" class="daily-login-section">
+
+            <div class="daily-login-card">
+
+                <div class="daily-login-decoration">
+                    🌸
+                </div>
+
+                <div class="daily-login-title">
+                    <h2>Daily Login</h2>
+
+                    <p>
+                        每天回来签到一下吧 ♡
+                    </p>
+                </div>
+
+
+                <!-- Login Status -->
+
+                <div
+                    id="daily-login-status"
+                    class="daily-login-status"
+                >
+                    今天签到吧 ♡
+                </div>
+
+
+                <!-- Check In Button -->
+
+                <button
+                    id="daily-login-button"
+                    class="daily-login-button"
+                >
+                    ✨ 签到
+                </button>
+
+
+                <!-- Stats -->
+
+                <div class="daily-login-stats">
+
+                    <div class="daily-login-stat">
+
+                        <div class="daily-stat-icon">
+                            🔥
+                        </div>
+
+                        <div
+                            id="daily-streak"
+                            class="daily-stat-value"
+                        >
+                            0
+                        </div>
+
+                        <div class="daily-stat-label">
+                            连续签到
+                        </div>
+
+                    </div>
+
+
+                    <div class="daily-login-stat">
+
+                        <div class="daily-stat-icon">
+                            📅
+                        </div>
+
+                        <div
+                            id="daily-total"
+                            class="daily-stat-value"
+                        >
+                            0
+                        </div>
+
+                        <div class="daily-stat-label">
+                            总签到次数
+                        </div>
+
+                    </div>
+
+
+                    <div class="daily-login-stat">
+
+                        <div class="daily-stat-icon">
+                            ✨
+                        </div>
+
+                        <div
+                            id="daily-xp"
+                            class="daily-stat-value"
+                        >
+                            +10
+                        </div>
+
+                        <div class="daily-stat-label">
+                            今日 XP
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Level -->
+
+                <div class="daily-level">
+
+                    <div class="daily-level-top">
+
+                        <span>
+                            Level
+                            <strong id="daily-level-number">
+                                1
+                            </strong>
+                        </span>
+
+                        <span id="daily-xp-text">
+                            0 / 100 XP
+                        </span>
+
+                    </div>
+
+
+                    <div class="daily-level-bar">
+
+                        <div
+                            id="daily-level-progress"
+                            class="daily-level-progress"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section id="daily-verse" class="daily-verse-section">
+            <div class="daily-verse-card">
+                <div class="daily-verse-image">
+                    <img id="daily-verse-img" src="" alt="">
+                </div>
+
+                <div class="daily-verse-content">
+                    <div class="daily-verse-label">🌿 DAILY VERSE</div>
+
+                    <h2 id="daily-verse-title"></h2>
+
+                    <div class="daily-verse-text">
+                        “<span id="daily-verse-text"></span>”
+                    </div>
+
+                    <div id="daily-verse-reference" class="daily-verse-reference"></div>
+                </div>
+
+                <button id="random-verse-button" class="random-verse-button">
+                    🎲 随机一节
+                </button>
+
+                <div id="random-verse-label" class="random-verse-label">
+                    想看看另一节吗？
+                </div>
+            </div>
+        </section>
+
+
+        <section class="content-section">
+
+            <h2>关于我们</h2>
+
+            <p>
+                这里是我们的 CG 小天地，
+                记录我们一起成长、分享和服事的点点滴滴。
+            </p>
+
+        </section>
+
+
+        <section class="content-section">
+
+            <h2>我们的回忆</h2>
+
+            <p>
+                这里之后可以放我们的照片和回忆。
+            </p>
+
+        </section>
+
+        <section id="leaderboard" class="quiz-section">
+            <div class="quiz-card">
+                <div class="quiz-decoration">📖</div>
+
+                <div class="quiz-title">
+                    <h2>Bible Quiz</h2>
+                    <p>选择难度，挑战你的圣经知识 ♡</p>
+                </div>
+
+                <div id="quiz-difficulty" class="quiz-difficulty">
+                    <button class="difficulty-button" data-difficulty="Easy">Easy</button>
+                    <button class="difficulty-button" data-difficulty="Medium">Medium</button>
+                    <button class="difficulty-button" data-difficulty="Hard">Hard</button>
+                    <button class="difficulty-button" data-difficulty="Insane">Insane</button>
+                </div>
+
+                <div id="quiz-area" class="quiz-area" style="display:none;">
+                    <div id="quiz-question" class="quiz-question"></div>
+
+                    <div id="quiz-options" class="quiz-options"></div>
+
+                    <div id="quiz-result" class="quiz-result"></div>
+
+                    <div id="quiz-answer-info" class="quiz-answer-info"></div>
+
+                    
+
+                    <button id="change-difficulty-button" class="change-difficulty-button">
+                        更换难度
+                    </button>
+                </div>
+
+                <div class="quiz-stats">
+                    <div class="quiz-stat">
+                        <div class="quiz-stat-icon">📖</div>
+                        <div id="quiz-correct" class="quiz-stat-value">0</div>
+                        <div class="quiz-stat-label">答对次数</div>
+                    </div>
+
+                    <div class="quiz-stat">
+                        <div class="quiz-stat-icon">✨</div>
+                        <div id="quiz-xp" class="quiz-stat-value">0 XP</div>
+                        <div class="quiz-stat-label">Quiz XP</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="leaderboard-section">
+            <div class="leaderboard-card">
+                <div class="leaderboard-decoration">🏆</div>
+
+                <div class="leaderboard-title">
+                    <h2>Leaderboard</h2>
+                    <p>看看大家目前的 XP 排名 ♡</p>
+                </div>
+
+                <div id="leaderboard-list" class="leaderboard-list">
+                    <div class="leaderboard-loading">
+                        Loading...
+                    </div>
+                </div>
+
+                <div id="leaderboard-my-rank" class="leaderboard-my-rank">
+                </div>
+            </div>
+        </section>
+
+
+        <section class="content-section">
+
+            <h2>CG 成员</h2>
+
+            <p>
+                这里之后可以介绍每一位 CG 成员。
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <script type="module" src="script.js"></script>
+
+</body>
+</html>

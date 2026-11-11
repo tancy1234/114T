@@ -1,0 +1,2003 @@
+/* ================================
+   Basic
+================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    background: #f8eee9;
+    color: #6b4b42;
+}
+
+
+/* ================================
+   Phone Layout
+================================ */
+
+body {
+    min-height: 100vh;
+}
+
+.opening-page,
+.main-page {
+    width: 100%;
+    max-width: 430px;
+    margin: 0 auto;
+}
+
+
+/* ================================
+   Opening Page
+================================ */
+
+.opening-page {
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px 24px;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            #f7d8dc 0%,
+            transparent 35%
+        ),
+        #f8eee9;
+}
+
+.opening-content {
+    width: 100%;
+    text-align: center;
+
+    padding: 50px 25px;
+
+    background: rgba(255, 250, 247, 0.8);
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 15px 40px rgba(126, 86, 76, 0.12);
+}
+
+.opening-decoration {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.opening-content h1 {
+    font-size: 30px;
+    font-weight: 700;
+
+    color: #80584e;
+
+    margin-bottom: 18px;
+}
+
+.opening-content p {
+    font-size: 15px;
+    line-height: 1.9;
+
+    color: #96736b;
+
+    margin-bottom: 35px;
+}
+
+
+/* ================================
+   Open Button
+================================ */
+
+#open-button {
+    border: none;
+
+    padding: 13px 42px;
+
+    border-radius: 999px;
+
+    background: #d9949d;
+    color: white;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 18px rgba(190, 112, 124, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#open-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 11px 22px rgba(190, 112, 124, 0.3);
+}
+
+#open-button:active {
+    transform: scale(0.96);
+}
+
+
+/* ================================
+   Sticky Navbar
+================================ */
+
+/* ================================
+   Navbar
+================================ */
+
+.navbar {
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+
+    width: 100%;
+    max-width: 430px;
+
+    margin: 0 auto;
+
+    background: rgba(255, 248, 245, 0.94);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-bottom:
+        1px solid rgba(128, 88, 78, 0.08);
+
+    box-shadow:
+        0 5px 20px rgba(126, 86, 76, 0.06);
+}
+
+
+/* ================================
+   Navbar Inner
+================================ */
+
+.navbar-inner {
+    height: 62px;
+
+    padding: 0 16px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* ================================
+   Logo
+================================ */
+
+.navbar-logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color: #80584e;
+
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+
+/* ================================
+   Navbar Actions
+================================ */
+
+.navbar-actions{display:flex;align-items:center;gap:4px;}
+
+/* ================================
+   Profile Button
+================================ */
+
+
+
+.profile-button:active {
+
+    transform: scale(0.92);
+}
+
+
+/* ================================
+   Menu Button
+================================ */
+
+
+
+.menu-button:active {
+
+    transform: scale(0.92);
+}
+
+
+/* button */
+.online-button,.profile-button,.menu-button{width:36px;height:36px;padding:0;border:none;background:transparent;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.online-button:hover,.profile-button:hover,.menu-button:hover{background:#fff0f2;}
+
+/* ================================
+   Navigation Menu
+================================ */
+
+.nav-menu {
+
+    display: none;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    padding: 10px 14px 15px;
+
+    background: rgba(255, 248, 245, 0.98);
+
+    animation:
+        navSlideDown 0.22s ease;
+}
+
+
+.nav-menu.active {
+
+    display: flex;
+}
+
+
+/* ================================
+   Navigation Links
+================================ */
+
+.nav-menu a {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px 14px;
+
+    border-radius: 15px;
+
+    text-decoration: none;
+
+    color: #795950;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    background: #fff;
+
+    border:
+        1px solid rgba(128, 88, 78, 0.06);
+
+    box-shadow:
+        0 3px 10px rgba(126, 86, 76, 0.04);
+
+    transition:
+        transform 0.18s ease,
+        background 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+
+.nav-menu a span {
+
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #f8e3e3;
+
+    font-size: 15px;
+}
+
+
+.nav-menu a:hover {
+
+    transform: translateX(3px);
+
+    background: #fff7f5;
+
+    box-shadow:
+        0 5px 14px rgba(126, 86, 76, 0.08);
+}
+
+
+/* ================================
+   Navigation Animation
+================================ */
+
+@keyframes navSlideDown {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(-8px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* ================================
+   Profile Card
+================================ */
+
+.profile-card {
+
+    position: absolute;
+
+    top: 68px;
+
+    right: 12px;
+
+    width: calc(100% - 24px);
+
+    max-width: 400px;
+
+    padding: 20px;
+
+    background: rgba(255, 250, 247, 0.98);
+
+    border-radius: 24px;
+
+    border:
+        1px solid rgba(128, 88, 78, 0.08);
+
+    box-shadow:
+        0 15px 35px rgba(126, 86, 76, 0.16);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    display: none;
+
+    animation:
+        profileSlideDown 0.22s ease;
+}
+
+
+.profile-card.active {
+
+    display: block;
+
+}
+
+
+/* ================================
+   Profile Header
+================================ */
+
+.profile-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding-bottom: 18px;
+
+    border-bottom:
+        1px solid rgba(128, 88, 78, 0.08);
+}
+
+
+.profile-avatar {
+
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7d8dc,
+            #f3e1dc
+        );
+
+    font-size: 25px;
+
+    box-shadow:
+        0 5px 15px rgba(190, 112, 124, 0.12);
+}
+
+
+.profile-label {
+
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #aa8a82;
+
+    font-size: 11px;
+}
+
+
+.profile-name h3 {
+
+    color: #80584e;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+
+/* ================================
+   Profile Stats
+================================ */
+
+.profile-stats {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: 15px;
+}
+
+
+.profile-stat {
+
+    padding: 13px 10px;
+
+    text-align: center;
+
+    background: #fff;
+
+    border-radius: 17px;
+
+    border:
+        1px solid rgba(128, 88, 78, 0.05);
+}
+
+
+.stat-icon {
+
+    font-size: 20px;
+
+    margin-bottom: 4px;
+}
+
+
+.stat-value {
+
+    color: #80584e;
+
+    font-size: 21px;
+
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+
+.stat-label {
+
+    margin-top: 4px;
+
+    color: #9b756d;
+
+    font-size: 11px;
+}
+
+
+/* ================================
+   Level
+================================ */
+
+.profile-level {
+
+    margin-top: 16px;
+
+    padding: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff5f2,
+            #fdf0f1
+        );
+
+    border-radius: 17px;
+}
+
+
+.level-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 9px;
+
+    color: #80584e;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.level-top strong {
+
+    font-size: 17px;
+}
+
+
+#profile-xp-text {
+
+    color: #aa8a82;
+
+    font-size: 11px;
+
+    font-weight: 500;
+}
+
+
+/* ================================
+   Level Progress Bar
+================================ */
+
+.level-bar {
+
+    width: 100%;
+
+    height: 9px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: #f0ddd9;
+}
+
+
+.level-progress {
+
+    width: 0%;
+
+    height: 100%;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d9949d,
+            #e7aeb5
+        );
+
+    transition:
+        width 0.5s ease;
+}
+
+
+/* ================================
+   Profile Animation
+================================ */
+
+@keyframes profileSlideDown {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(-8px)
+            scale(0.98);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+/* ================================
+   Login Page
+================================ */
+
+.login-page {
+    display: none;
+
+    width: 100%;
+    max-width: 430px;
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    margin: 0 auto;
+
+    padding: 24px;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            #f7d8dc 0%,
+            transparent 35%
+        ),
+        #f8eee9;
+}
+
+
+.login-card {
+    width: 100%;
+    max-width: 380px;
+
+    padding: 40px 25px;
+
+    text-align: center;
+
+    background: rgba(255, 250, 247, 0.95);
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 15px 40px rgba(126, 86, 76, 0.12);
+}
+
+
+.login-decoration {
+    font-size: 40px;
+
+    margin-bottom: 15px;
+}
+
+
+.login-card h1 {
+    font-size: 28px;
+
+    color: #80584e;
+
+    margin-bottom: 8px;
+}
+
+
+.login-card > p {
+    font-size: 14px;
+
+    color: #96736b;
+
+    margin-bottom: 25px;
+}
+
+
+/* ================================
+   Google Login
+================================ */
+
+.google-login-button {
+    width: 100%;
+
+    height: 46px;
+
+    border: 1px solid #e2d4d0;
+
+    border-radius: 999px;
+
+    background: #ffffff;
+
+    color: #5f514d;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.google-login-button:hover {
+    background: #fff5f3;
+}
+
+
+.google-login-button:active {
+    transform: scale(0.97);
+}
+
+
+.google-login-button span {
+    font-size: 18px;
+
+    font-weight: 700;
+
+    color: #4285f4;
+}
+
+
+/* ================================
+   Divider
+================================ */
+
+.login-divider {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 22px 0;
+}
+
+
+.login-divider::before,
+.login-divider::after {
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: #ead9d5;
+}
+
+
+.login-divider span {
+    font-size: 12px;
+
+    color: #a88982;
+}
+
+
+/* ================================
+   Inputs
+================================ */
+
+.login-card input {
+    width: 100%;
+
+    height: 46px;
+
+    padding: 0 15px;
+
+    margin-bottom: 12px;
+
+    border: 1px solid #ead4d0;
+
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    color: #6b4b42;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+
+.login-card input:focus {
+    border-color: #d9949d;
+
+    box-shadow:
+        0 0 0 3px rgba(217, 148, 157, 0.12);
+}
+
+
+.login-card input::placeholder {
+    color: #b49a94;
+}
+
+
+/* ================================
+   Login Button
+================================ */
+
+.login-button,
+#signup-button {
+    width: 100%;
+
+    height: 46px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    background: #d9949d;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    margin-top: 4px;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.login-button:hover,
+#signup-button:hover {
+    background: #cb858f;
+}
+
+
+.login-button:active,
+#signup-button:active {
+    transform: scale(0.97);
+}
+
+
+/* ================================
+   Switch Login / Sign Up
+================================ */
+
+.switch-text {
+    margin-top: 18px;
+
+    font-size: 13px;
+
+    color: #96736b;
+}
+
+
+.switch-text button {
+    border: none;
+
+    background: none;
+
+    color: #c47782;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+/* ================================
+   Sign Up
+================================ */
+
+#signup-form {
+    display: none;
+
+    margin-top: 10px;
+}
+
+
+.form-title {
+    font-size: 18px;
+
+    font-weight: 600;
+
+    color: #80584e;
+
+    margin-bottom: 18px;
+}
+
+
+/* ================================
+   Auth Message
+================================ */
+
+#auth-message {
+    min-height: 20px;
+
+    margin-top: 15px;
+
+    font-size: 13px;
+
+    color: #c47782;
+}
+
+
+/* ================================
+   Username Setup Page
+================================ */
+
+.username-page {
+    display: none;
+
+    width: 100%;
+    max-width: 430px;
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    margin: 0 auto;
+
+    padding: 24px;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            #f7d8dc 0%,
+            transparent 35%
+        ),
+        #f8eee9;
+}
+
+.username-card {
+    width: 100%;
+    max-width: 380px;
+
+    padding: 40px 25px;
+
+    text-align: center;
+
+    background: rgba(255, 250, 247, 0.95);
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 15px 40px rgba(126, 86, 76, 0.12);
+}
+
+
+.username-decoration {
+    font-size: 40px;
+
+    margin-bottom: 15px;
+}
+
+
+.username-card h1 {
+    font-size: 25px;
+
+    color: #80584e;
+
+    margin-bottom: 10px;
+}
+
+
+.username-card > p {
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    color: #96736b;
+
+    margin-bottom: 25px;
+}
+
+
+#username-input {
+    width: 100%;
+
+    height: 46px;
+
+    padding: 0 15px;
+
+    margin-bottom: 15px;
+
+    border: 1px solid #ead4d0;
+
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    color: #6b4b42;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+
+#username-input:focus {
+    border-color: #d9949d;
+
+    box-shadow:
+        0 0 0 3px rgba(217, 148, 157, 0.12);
+}
+
+
+#username-input::placeholder {
+    color: #b49a94;
+}
+
+
+#save-username-button {
+    width: 100%;
+
+    height: 46px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    background: #d9949d;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+#save-username-button:hover {
+    background: #cb858f;
+}
+
+
+#save-username-button:active {
+    transform: scale(0.97);
+}
+
+
+#username-message {
+    min-height: 20px;
+
+    margin-top: 15px;
+
+    font-size: 13px;
+
+    color: #c47782;
+}
+
+
+
+
+/* ================================
+   Main Page
+================================ */
+
+.main-page {
+    display: none;
+
+    min-height: 100vh;
+
+    background: #fff8f5;
+
+    padding-bottom: 50px;
+}
+
+
+/* ================================
+   Hero
+================================ */
+
+.hero {
+    text-align: center;
+
+    padding: 55px 25px 40px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f6d9dc,
+            #fff8f5
+        );
+}
+
+.hero-decoration {
+    font-size: 38px;
+    margin-bottom: 12px;
+}
+
+.hero h1 {
+    font-size: 27px;
+
+    color: #80584e;
+
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 14px;
+
+    color: #9b756d;
+}
+
+
+/* ================================
+   Content Sections
+================================ */
+
+.content-section {
+    margin: 20px 18px;
+    padding: 25px 22px;
+
+    background: #fff;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 8px 25px rgba(126, 86, 76, 0.08);
+}
+
+.content-section h2 {
+    font-size: 20px;
+
+    color: #80584e;
+
+    margin-bottom: 12px;
+}
+
+.content-section p {
+    font-size: 14px;
+
+    line-height: 1.9;
+
+    color: #876a63;
+}
+
+
+/* ================================
+   Daily Login
+================================ */
+
+.daily-login-section {
+
+    margin: 20px 18px;
+
+}
+
+
+/* ================================
+   Daily Login Card
+================================ */
+
+.daily-login-card {
+
+    position: relative;
+
+    padding: 25px 20px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffaf7,
+            #fff1f2
+        );
+
+    border-radius: 25px;
+
+    border:
+        1px solid rgba(128, 88, 78, 0.06);
+
+    box-shadow:
+        0 10px 28px rgba(126, 86, 76, 0.09);
+
+    overflow: hidden;
+}
+
+
+/* Decorative circle */
+
+.daily-login-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    top: -45px;
+    right: -30px;
+
+    border-radius: 50%;
+
+    background: rgba(247, 216, 220, 0.45);
+
+}
+
+
+.daily-login-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 70px;
+    height: 70px;
+
+    bottom: -35px;
+    left: -25px;
+
+    border-radius: 50%;
+
+    background: rgba(243, 225, 220, 0.5);
+
+}
+
+
+/* ================================
+   Decoration
+================================ */
+
+.daily-login-decoration {
+
+    position: relative;
+
+    z-index: 1;
+
+    font-size: 30px;
+
+    margin-bottom: 5px;
+}
+
+
+/* ================================
+   Title
+================================ */
+
+.daily-login-title {
+
+    position: relative;
+
+    z-index: 1;
+}
+
+
+.daily-login-title h2 {
+
+    color: #80584e;
+
+    font-size: 21px;
+
+    margin-bottom: 5px;
+}
+
+
+.daily-login-title p {
+
+    color: #a27d75;
+
+    font-size: 12px;
+}
+
+
+/* ================================
+   Status
+================================ */
+
+.daily-login-status {
+
+    position: relative;
+
+    z-index: 1;
+
+    margin-top: 18px;
+
+    color: #80584e;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+/* ================================
+   Login Button
+================================ */
+
+.daily-login-button {
+
+    position: relative;
+
+    z-index: 1;
+
+    margin-top: 13px;
+
+    padding: 11px 38px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d9949d,
+            #dfabb1
+        );
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 16px rgba(190, 112, 124, 0.22);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.daily-login-button:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 20px rgba(190, 112, 124, 0.28);
+}
+
+
+.daily-login-button:active {
+
+    transform: scale(0.96);
+}
+
+
+/* Checked In */
+
+.daily-login-button.checked {
+
+    background: #e7d8d3;
+
+    color: #96736b;
+
+    box-shadow: none;
+
+    cursor: default;
+}
+
+
+.daily-login-button.checked:hover {
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* ================================
+   Stats
+================================ */
+
+.daily-login-stats {
+
+    position: relative;
+
+    z-index: 1;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 8px;
+
+    margin-top: 22px;
+}
+
+
+.daily-login-stat {
+
+    padding: 12px 5px;
+
+    background: rgba(255, 255, 255, 0.75);
+
+    border-radius: 16px;
+
+    border:
+        1px solid rgba(128, 88, 78, 0.05);
+}
+
+
+.daily-stat-icon {
+
+    font-size: 18px;
+
+    margin-bottom: 3px;
+}
+
+
+.daily-stat-value {
+
+    color: #80584e;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+
+.daily-stat-label {
+
+    margin-top: 4px;
+
+    color: #a27d75;
+
+    font-size: 10px;
+}
+
+
+/* ================================
+   Daily Level
+================================ */
+
+.daily-level {
+
+    position: relative;
+
+    z-index: 1;
+
+    margin-top: 15px;
+
+    padding: 13px 14px;
+
+    text-align: left;
+
+    background: rgba(255, 255, 255, 0.65);
+
+    border-radius: 16px;
+}
+
+
+.daily-level-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+
+    color: #80584e;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.daily-level-top strong {
+
+    font-size: 16px;
+}
+
+
+#daily-xp-text {
+
+    color: #a27d75;
+
+    font-size: 10px;
+
+    font-weight: 500;
+}
+
+
+/* ================================
+   Level Progress Bar
+================================ */
+
+.daily-level-bar {
+
+    width: 100%;
+
+    height: 8px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: #efdfdb;
+}
+
+
+.daily-level-progress {
+
+    width: 0%;
+
+    height: 100%;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d9949d,
+            #e7aeb5
+        );
+
+    transition:
+        width 0.5s ease;
+}
+
+
+.quiz-section{padding:20px 16px 30px;}
+.quiz-card{position:relative;overflow:hidden;background:linear-gradient(145deg,#fff8f3,#fff0f4);border:1px solid #f0d6d6;border-radius:24px;padding:24px 18px;box-shadow:0 8px 25px rgba(120,80,70,.08);}
+.quiz-card::before{content:"";position:absolute;width:120px;height:120px;background:#f8dfe4;border-radius:50%;top:-55px;right:-40px;opacity:.5;}
+.quiz-decoration{font-size:38px;text-align:center;margin-bottom:5px;}
+.quiz-title{text-align:center;position:relative;z-index:1;}
+.quiz-title h2{margin:0;color:#6f5048;font-size:24px;}
+.quiz-title p{margin:6px 0 20px;color:#9a7770;font-size:14px;}
+.quiz-question{background:white;border-radius:16px;padding:18px 15px;color:#5f4944;font-size:16px;line-height:1.6;text-align:center;box-shadow:0 3px 12px rgba(100,70,60,.06);min-height:70px;display:flex;align-items:center;justify-content:center;}
+.quiz-options{display:flex;flex-direction:column;gap:10px;margin-top:15px;}
+.quiz-option{border:1px solid #ead2d2;background:white;border-radius:14px;padding:13px 15px;text-align:left;font-size:15px;color:#6d5550;cursor:pointer;transition:.2s;}
+.quiz-option:hover{background:#fff1f3;transform:translateY(-1px);}
+.quiz-option.correct{background:#e8f6e9;border-color:#9bcf9f;color:#47704b;}
+.quiz-option.wrong{background:#fde8e8;border-color:#e2a1a1;color:#914c4c;}
+.quiz-option:disabled{cursor:default;transform:none;}
+.quiz-result{text-align:center;min-height:25px;margin-top:12px;font-size:14px;font-weight:600;}
+.next-quiz-button{display:block;margin:10px auto 0;border:none;border-radius:20px;padding:10px 22px;background:#c98f98;color:white;font-size:14px;cursor:pointer;}
+.quiz-stats{display:flex;gap:10px;margin-top:20px;}
+.quiz-stat{flex:1;background:rgba(255,255,255,.75);border-radius:15px;padding:12px 5px;text-align:center;}
+.quiz-stat-icon{font-size:20px;}
+.quiz-stat-value{font-size:18px;font-weight:bold;color:#70524c;margin-top:3px;}
+.quiz-stat-label{font-size:11px;color:#9a7770;margin-top:2px;}
+
+.quiz-difficulty{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px;}
+.difficulty-button{border:1px solid #ead2d2;background:white;border-radius:14px;padding:13px;color:#6d5550;font-size:14px;cursor:pointer;transition:.2s;}
+.difficulty-button:hover{background:#fff1f3;transform:translateY(-1px);}
+.quiz-area{margin-top:15px;}
+.quiz-answer-info{background:#fff8f3;border-radius:14px;padding:12px;margin-top:10px;color:#765c55;font-size:13px;line-height:1.6;text-align:left;}
+.change-difficulty-button{display:block;margin:10px auto 0;border:1px solid #d9b5b5;background:white;border-radius:20px;padding:8px 18px;color:#80615b;font-size:13px;cursor:pointer;}
+
+.quiz-completed{padding:18px;text-align:center;background:#fff8f3;border-radius:16px;color:#765c55;}
+
+
+
+.leaderboard-section{padding:20px 16px 30px;}
+.leaderboard-card{position:relative;overflow:hidden;background:linear-gradient(145deg,#fff8f3,#fff0f4);border:1px solid #f0d6d6;border-radius:24px;padding:24px 18px;box-shadow:0 8px 25px rgba(120,80,70,.08);}
+.leaderboard-card::before{content:"";position:absolute;width:120px;height:120px;background:#f8dfe4;border-radius:50%;top:-55px;right:-40px;opacity:.5;}
+.leaderboard-decoration{font-size:38px;text-align:center;margin-bottom:5px;position:relative;z-index:1;}
+.leaderboard-title{text-align:center;position:relative;z-index:1;}
+.leaderboard-title h2{margin:0;color:#6f5048;font-size:24px;}
+.leaderboard-title p{margin:6px 0 20px;color:#9a7770;font-size:14px;}
+
+.leaderboard-list{display:flex;flex-direction:column;gap:9px;}
+.leaderboard-loading{text-align:center;color:#9a7770;font-size:14px;padding:20px;}
+
+.leaderboard-item{display:flex;align-items:center;gap:10px;background:white;border-radius:15px;padding:11px 12px;box-shadow:0 3px 10px rgba(100,70,60,.05);}
+.leaderboard-item.me{border:2px solid #d9a3aa;background:#fff7f8;}
+
+.leaderboard-rank{width:30px;text-align:center;font-size:16px;font-weight:bold;color:#80615b;}
+.leaderboard-rank.top1{font-size:22px;}
+.leaderboard-rank.top2{font-size:20px;}
+.leaderboard-rank.top3{font-size:20px;}
+
+.leaderboard-user{flex:1;min-width:0;}
+.leaderboard-username{font-size:14px;font-weight:bold;color:#6d5550;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.leaderboard-level{font-size:11px;color:#a1847d;margin-top:2px;}
+
+.leaderboard-xp{text-align:right;font-size:14px;font-weight:bold;color:#b66f7b;}
+.leaderboard-xp-label{font-size:10px;color:#a1847d;font-weight:normal;}
+
+.leaderboard-my-rank{margin-top:15px;background:#fff8f3;border-radius:15px;padding:12px;text-align:center;color:#765c55;font-size:13px;display:none;}
+
+
+
+
+
+.online-card{position:absolute;top:58px;right:10px;width:250px;background:#fffaf7;border:1px solid #efdada;border-radius:18px;padding:14px;box-shadow:0 8px 25px rgba(100,70,60,.12);display:none;z-index:100;}
+.online-card.active{display:block;}
+.online-card-header{display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:1px solid #f0dddd;color:#6d5550;}
+.online-card-header>span{font-size:20px;}
+.online-card-header strong{display:block;font-size:15px;}
+.online-card-header small{display:block;margin-top:2px;font-size:11px;color:#a1847d;}
+.online-list{display:flex;flex-direction:column;gap:7px;margin-top:10px;max-height:250px;overflow-y:auto;}
+.online-player{display:flex;align-items:center;gap:9px;background:white;border-radius:12px;padding:9px 10px;}
+.online-dot{font-size:11px;}
+.online-player-info{flex:1;min-width:0;}
+.online-player-name{font-size:13px;font-weight:bold;color:#6d5550;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.online-player-level{font-size:10px;color:#a1847d;margin-top:2px;}
+.online-loading,.online-empty{text-align:center;color:#a1847d;font-size:12px;padding:12px;}
+
+
+
+.daily-verse-section{padding:10px 16px 30px;}
+.daily-verse-card{position:relative;overflow:hidden;background:#fff8f3;border:1px solid #efd9d5;border-radius:24px;padding:14px;box-shadow:0 8px 25px rgba(120,80,70,.08);}
+.daily-verse-image{
+    width:100%;
+    border-radius:18px;
+    overflow:hidden;
+    margin-bottom:18px;
+}
+.daily-verse-image img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:block;
+}
+.daily-verse-content{text-align:center;padding:0 8px;}
+.daily-verse-label{font-size:11px;letter-spacing:2px;color:#b77c86;font-weight:bold;margin-bottom:8px;}
+.daily-verse-content h2{margin:0;color:#6f5048;font-size:22px;}
+.daily-verse-text{margin-top:14px;color:#6d5550;font-size:15px;line-height:1.8;}
+.daily-verse-reference{margin-top:12px;color:#a16f78;font-size:13px;font-weight:bold;}
+.random-verse-button{display:block;margin:20px auto 0;border:none;border-radius:20px;padding:10px 22px;background:#c98f98;color:white;font-size:13px;cursor:pointer;transition:.2s;}
+.random-verse-button:hover{transform:translateY(-1px);background:#bc7e88;}
+.random-verse-label{text-align:center;margin-top:8px;color:#ad8b84;font-size:11px;}
+
+
+
+/* ================================
+   Random Verse Page
+================================ */
+
+.random-verse-page{
+    display:block;
+    position:relative;
+    width:100%;
+    max-width:430px;
+    min-height:100vh;
+    min-height:100dvh;
+    margin:0 auto;
+    overflow:hidden;
+    background:#fff8f3;
+}
+
+.random-verse-header{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:72px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:10px 16px;
+    background:rgba(255,248,243,.96);
+    backdrop-filter:blur(8px);
+    z-index:20;
+    border-bottom:1px solid #f0dddd;
+}
+
+.random-verse-back{
+    width:40px;
+    height:40px;
+    border:none;
+    border-radius:50%;
+    background:#f8e4e5;
+    color:#765851;
+    font-size:21px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+.random-verse-header h2{
+    margin:0;
+    color:#6f5048;
+    font-size:21px;
+}
+
+.random-verse-header p{
+    margin:3px 0 0;
+    color:#a1847d;
+    font-size:11px;
+}
+
+
+/* ================================
+   Camera Frame
+================================ */
+
+.random-verse-stage{
+    position:absolute;
+    top:72px;
+    left:0;
+    width:100%;
+    height:calc(100vh - 125px);
+    height:calc(100dvh - 125px);
+    overflow:hidden;
+}
+
+.random-verse-stage::before,
+.random-verse-stage::after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:100%;
+    height:80px;
+    z-index:10;
+    pointer-events:none;
+}
+
+.random-verse-stage::before{
+    top:0;
+    background:linear-gradient(
+        to bottom,
+        #fff8f3,
+        rgba(255,248,243,0)
+    );
+}
+
+.random-verse-stage::after{
+    bottom:0;
+    background:linear-gradient(
+        to top,
+        #fff8f3,
+        rgba(255,248,243,0)
+    );
+}
+
+
+/* ================================
+   Card Track
+================================ */
+
+.random-verse-track{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+    padding:25px 0;
+}
+
+.random-verse-track.scrolling{
+    animation:verseTrackScroll 24s linear infinite;
+}
+
+@keyframes verseTrackScroll{
+
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(-1100px);
+    }
+
+}
+
+
+/* ================================
+   Card
+================================ */
+
+.random-verse-card{
+    width:290px;
+    height:150px;
+    flex-shrink:0;
+    perspective:1000px;
+    cursor:pointer;
+    transition:
+        opacity .4s ease,
+        transform .4s ease;
+}
+
+.random-verse-card-inner{
+    position:relative;
+    width:100%;
+    height:100%;
+    transform-style:preserve-3d;
+    transition:transform .8s cubic-bezier(.4,.2,.2,1);
+}
+
+.random-verse-card.flipped
+.random-verse-card-inner{
+    transform:rotateY(180deg);
+}
+
+
+/* ================================
+   Front
+================================ */
+
+.random-verse-card-front,
+.random-verse-card-back{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border-radius:22px;
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+    box-shadow:0 7px 22px rgba(100,70,60,.1);
+}
+
+
+/* Front Card */
+
+.random-verse-card-front{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:#fff;
+    border:1px solid #ead3d0;
+    color:#6f5048;
+}
+
+.random-verse-card-number{
+    position:absolute;
+    top:13px;
+    left:17px;
+    font-size:11px;
+    letter-spacing:1px;
+    color:#c4939a;
+    font-weight:bold;
+}
+
+.random-verse-card-icon{
+    font-size:22px;
+    color:#d19aa2;
+    margin-bottom:7px;
+}
+
+.random-verse-card-title{
+    padding:0 20px;
+    text-align:center;
+    font-size:18px;
+    font-weight:bold;
+    color:#6f5048;
+}
+
+.random-verse-card-reference{
+    margin-top:7px;
+    font-size:11px;
+    color:#a47d77;
+}
+
+.random-verse-card-hint{
+    position:absolute;
+    bottom:10px;
+    font-size:9px;
+    color:#c2a09b;
+}
+
+
+/* ================================
+   Back
+================================ */
+
+.random-verse-card-back{
+    transform:rotateY(180deg);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    text-align:center;
+    background:linear-gradient(
+        145deg,
+        #fff8f3,
+        #fff0f4
+    );
+    border:1px solid #e8ced1;
+}
+
+.random-verse-card-back-title{
+    color:#b47780;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:9px;
+}
+
+.random-verse-card-back-text{
+    color:#6d5550;
+    font-size:12px;
+    line-height:1.7;
+}
+
+.random-verse-card-back-reference{
+    margin-top:9px;
+    color:#a16f78;
+    font-size:11px;
+    font-weight:bold;
+}
+
+
+/* ================================
+   Selected Card
+================================ */
+
+.random-verse-card.dimmed{
+    opacity:.15;
+}
+
+.random-verse-card.selected{
+    transform:scale(1.03);
+    z-index:30;
+}
+
+
+/* ================================
+   Bottom Hint
+================================ */
+
+.random-verse-hint{
+    position:absolute;
+    bottom:24px;
+    left:0;
+    width:100%;
+    text-align:center;
+    color:#a1847d;
+    font-size:12px;
+    z-index:20;
+    pointer-events:none;
+}

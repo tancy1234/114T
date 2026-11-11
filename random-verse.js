@@ -141,12 +141,30 @@ randomVerseBack.addEventListener("click", function() {
     window.location.href = "index.html";
 });
 
-randomVerseStage.addEventListener("touchstart", function() {
-    pauseAutoScroll();
+let touchStartY = 0;
+
+randomVerseStage.addEventListener("touchstart", function(event) {
+    touchStartY = event.touches[0].clientY;
+    autoScrollPaused = true;
+
+    clearTimeout(autoScrollResumeTimer);
 });
 
-randomVerseStage.addEventListener("touchmove", function() {
-    pauseAutoScroll();
+randomVerseStage.addEventListener("touchmove", function(event) {
+    const currentY = event.touches[0].clientY;
+    const distance = Math.abs(currentY - touchStartY);
+
+    if (distance > 5) {
+        autoScrollPaused = true;
+    }
+});
+
+randomVerseStage.addEventListener("touchend", function() {
+    clearTimeout(autoScrollResumeTimer);
+
+    autoScrollResumeTimer = setTimeout(function() {
+        autoScrollPaused = false;
+    }, 1200);
 });
 
 randomVerseStage.addEventListener("wheel", function() {

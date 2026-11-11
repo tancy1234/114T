@@ -273,7 +273,7 @@ function pauseAutoScroll() {
 setInterval(
     function() {
 
-        randomVerseContainer.scrollTop += 0.5;
+        randomVerseContainer.scrollTop += 1;
 
     },
     20

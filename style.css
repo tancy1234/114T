@@ -1723,6 +1723,9 @@ body {
     background:#fff8f3;
 
     overflow:hidden;
+
+    display:flex;
+    flex-direction:column;
 }
 
 
@@ -1732,13 +1735,12 @@ body {
 
 .random-verse-header{
 
-    position:absolute;
-
-    top:0;
-    left:0;
+    position:relative;
 
     width:100%;
     height:72px;
+
+    flex-shrink:0;
 
     display:flex;
     align-items:center;
@@ -1804,14 +1806,13 @@ body {
 
 .random-verse-container{
 
-    position:absolute;
-
-    top:72px;
-    bottom:0;
-
-    left:0;
+    position:relative;
 
     width:100%;
+
+    flex:1;
+
+    min-height:0;
 
     overflow-y:auto;
     overflow-x:hidden;
@@ -1822,7 +1823,6 @@ body {
 
     scrollbar-width:none;
 }
-
 
 .random-verse-container::-webkit-scrollbar{
     display:none;

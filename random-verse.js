@@ -306,6 +306,11 @@ window.addEventListener(
 
 function autoScroll(timestamp) {
 
+    console.log(
+        "scroll:",
+        window.scrollY
+    );
+
     if (!lastTime) {
 
         lastTime = timestamp;
@@ -365,4 +370,8 @@ createCards();
 
 requestAnimationFrame(
     autoScroll
+);
+
+console.log(
+    "AUTO SCROLL STARTED"
 );

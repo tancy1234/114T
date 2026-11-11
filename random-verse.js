@@ -1,10 +1,6 @@
 import { verses } from "./verses.js";
 
 
-/* ================================
-   Elements
-================================ */
-
 const randomVerseBack =
     document.getElementById("random-verse-back");
 
@@ -15,18 +11,17 @@ const randomVerseHint =
     document.getElementById("random-verse-hint");
 
 
-/* ================================
-   Variables
-================================ */
+let randomVerseRunning = true;
 
 let autoScrollPaused = false;
+
 let autoScrollResumeTimer = null;
 
 let lastTime = null;
 
 
 /* ================================
-   Shuffle Verses
+   Shuffle
 ================================ */
 
 function shuffleVerses() {
@@ -35,11 +30,13 @@ function shuffleVerses() {
 
     for (let i = shuffled.length - 1; i > 0; i--) {
 
-        const j = Math.floor(
-            Math.random() * (i + 1)
-        );
+        const j =
+            Math.floor(Math.random() * (i + 1));
 
-        [shuffled[i], shuffled[j]] = [
+        [
+            shuffled[i],
+            shuffled[j]
+        ] = [
             shuffled[j],
             shuffled[i]
         ];
@@ -55,16 +52,16 @@ function shuffleVerses() {
 
 function createCard(verse, index) {
 
-    const card = document.createElement("div");
+    const card =
+        document.createElement("div");
 
-    card.className = "random-verse-card";
+    card.className =
+        "random-verse-card";
+
 
     card.innerHTML = `
 
         <div class="random-verse-card-inner">
-
-
-            <!-- Front -->
 
             <div class="random-verse-card-front">
 
@@ -72,21 +69,17 @@ function createCard(verse, index) {
                     ${String(index + 1).padStart(2, "0")}
                 </div>
 
-
                 <div class="random-verse-card-icon">
                     ✦
                 </div>
-
 
                 <div class="random-verse-card-title">
                     ${verse.title}
                 </div>
 
-
                 <div class="random-verse-card-reference">
                     ${verse.reference}
                 </div>
-
 
                 <div class="random-verse-card-hint">
                     点击翻开
@@ -95,19 +88,15 @@ function createCard(verse, index) {
             </div>
 
 
-            <!-- Back -->
-
             <div class="random-verse-card-back">
 
                 <div class="random-verse-card-back-title">
                     ${verse.title}
                 </div>
 
-
                 <div class="random-verse-card-back-text">
                     “${verse.text}”
                 </div>
-
 
                 <div class="random-verse-card-back-reference">
                     ${verse.reference}
@@ -115,24 +104,16 @@ function createCard(verse, index) {
 
             </div>
 
-
         </div>
 
     `;
 
 
-    /* ================================
-       Card Click
-    ================================ */
+    card.addEventListener("click", function() {
 
-    card.addEventListener(
-        "click",
-        function() {
+        selectCard(card);
 
-            selectCard(card);
-
-        }
-    );
+    });
 
 
     return card;
@@ -147,34 +128,109 @@ function createCards() {
 
     randomVerseTrack.innerHTML = "";
 
-    const shuffled = shuffleVerses();
+    const shuffled =
+        shuffleVerses();
 
-    /*
-     * Number of cards shown.
-     */
+
     const cardsToCreate = 12;
 
 
-    for (
-        let i = 0;
-        i < cardsToCreate;
-        i++
-    ) {
+    for (let i = 0; i < cardsToCreate; i++) {
 
         const verse =
             shuffled[i % shuffled.length];
 
 
         const card =
-            createCard(
-                verse,
-                i
-            );
+            createCard(verse, i);
 
 
         randomVerseTrack.appendChild(card);
 
     }
+
+}
+
+
+/* ================================
+   Card Selection
+================================ */
+
+function selectCard(card) {
+
+    pauseAutoScroll();
+
+
+    /*
+     * Click same card
+     * → close it
+     */
+
+    if (
+        card.classList.contains("flipped")
+    ) {
+
+        card.classList.remove("flipped");
+
+        card.classList.remove("selected");
+
+        randomVerseHint.textContent =
+            "✨ 点击一张卡片";
+
+        return;
+    }
+
+
+    /*
+     * Close other cards
+     */
+
+    const flippedCards =
+        randomVerseTrack.querySelectorAll(
+            ".random-verse-card.flipped"
+        );
+
+
+    flippedCards.forEach(function(otherCard) {
+
+        otherCard.classList.remove(
+            "flipped"
+        );
+
+        otherCard.classList.remove(
+            "selected"
+        );
+
+    });
+
+
+    /*
+     * Select new card
+     */
+
+    card.classList.add("selected");
+
+
+    randomVerseHint.textContent =
+        "♡ 你选择了这一节";
+
+
+    /*
+     * Small delay before flip
+     */
+
+    setTimeout(function() {
+
+        if (
+            card.classList.contains("selected")
+        ) {
+
+            card.classList.add("flipped");
+
+        }
+
+    }, 100);
+
 }
 
 
@@ -197,107 +253,90 @@ function pauseAutoScroll() {
 
             autoScrollPaused = false;
 
-        }, 1500);
+        }, 1200);
 
 }
 
 
 /* ================================
-   Select Card
+   Detect Manual Scroll
 ================================ */
 
-function selectCard(card) {
-
-    /*
-     * Stop auto movement temporarily
-     * when user interacts with a card.
-     */
-    pauseAutoScroll();
+let lastScrollY =
+    window.scrollY;
 
 
-    /* ================================
-       Click Same Card
-       → Close it
-    ================================ */
+window.addEventListener(
+    "scroll",
+    function() {
 
-    if (
-        card.classList.contains("flipped")
-    ) {
-
-        card.classList.remove(
-            "flipped"
-        );
-
-        card.classList.remove(
-            "selected"
-        );
+        const currentScrollY =
+            window.scrollY;
 
 
-        randomVerseHint.textContent =
-            "✨ 点击一张卡片";
+        /*
+         * Ignore very small
+         * automatic movement
+         */
+
+        if (
+            Math.abs(
+                currentScrollY - lastScrollY
+            ) > 1
+        ) {
+
+            pauseAutoScroll();
+
+        }
 
 
-        return;
+        lastScrollY =
+            currentScrollY;
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+/* ================================
+   Auto Scroll
+================================ */
+
+function autoScroll(timestamp) {
+
+    if (!lastTime) {
+
+        lastTime = timestamp;
+
     }
 
 
-    /* ================================
-       Close Other Cards
-    ================================ */
+    const delta =
+        timestamp - lastTime;
 
-    const flippedCards =
-        randomVerseTrack.querySelectorAll(
-            ".random-verse-card.flipped"
+
+    lastTime =
+        timestamp;
+
+
+    if (
+        !autoScrollPaused &&
+        randomVerseRunning
+    ) {
+
+        window.scrollBy(
+            0,
+            delta * 0.025
         );
 
+    }
 
-    flippedCards.forEach(
-        function(otherCard) {
 
-            otherCard.classList.remove(
-                "flipped"
-            );
-
-            otherCard.classList.remove(
-                "selected"
-            );
-
-        }
+    requestAnimationFrame(
+        autoScroll
     );
-
-
-    /* ================================
-       Select New Card
-    ================================ */
-
-    card.classList.add(
-        "selected"
-    );
-
-
-    randomVerseHint.textContent =
-        "♡ 你选择了这一节";
-
-
-    /* ================================
-       Flip Open
-    ================================ */
-
-    setTimeout(function() {
-
-        if (
-            card.classList.contains(
-                "selected"
-            )
-        ) {
-
-            card.classList.add(
-                "flipped"
-            );
-
-        }
-
-    }, 100);
 
 }
 
@@ -318,165 +357,12 @@ randomVerseBack.addEventListener(
 
 
 /* ================================
-   Automatic Scroll
+   Start
 ================================ */
 
-function autoScroll(timestamp) {
+createCards();
 
-
-    /*
-     * First frame
-     */
-    if (lastTime === null) {
-
-        lastTime = timestamp;
-
-    }
-
-
-    const delta =
-        timestamp - lastTime;
-
-
-    lastTime = timestamp;
-
-
-    /*
-     * Only scroll when user
-     * is not interacting.
-     */
-    if (!autoScrollPaused) {
-
-
-        /*
-         * Scroll the entire webpage.
-         *
-         * 0.025 = very slow
-         */
-        window.scrollBy(
-            0,
-            delta * 0.025
-        );
-
-    }
-
-
-    requestAnimationFrame(
-        autoScroll
-    );
-
-}
-
-
-/* ================================
-   Start Auto Scroll
-================================ */
 
 requestAnimationFrame(
     autoScroll
 );
-
-
-/* ================================
-   Detect Manual Touch
-================================ */
-
-window.addEventListener(
-    "touchstart",
-    function() {
-
-        pauseAutoScroll();
-
-    },
-    {
-        passive: true
-    }
-);
-
-
-window.addEventListener(
-    "touchmove",
-    function() {
-
-        pauseAutoScroll();
-
-    },
-    {
-        passive: true
-    }
-);
-
-
-window.addEventListener(
-    "touchend",
-    function() {
-
-        pauseAutoScroll();
-
-    },
-    {
-        passive: true
-    }
-);
-
-
-/* ================================
-   Detect Mouse Wheel
-================================ */
-
-window.addEventListener(
-    "wheel",
-    function() {
-
-        pauseAutoScroll();
-
-    },
-    {
-        passive: true
-    }
-);
-
-
-/* ================================
-   Detect Mouse Drag
-================================ */
-
-window.addEventListener(
-    "mousedown",
-    function() {
-
-        pauseAutoScroll();
-
-    }
-);
-
-
-window.addEventListener(
-    "mousemove",
-    function(event) {
-
-        if (event.buttons) {
-
-            pauseAutoScroll();
-
-        }
-
-    }
-);
-
-
-window.addEventListener(
-    "mouseup",
-    function() {
-
-        pauseAutoScroll();
-
-    }
-);
-
-
-/* ================================
-   Create Cards
-================================ */
-
-createCards();

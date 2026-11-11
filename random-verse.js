@@ -125,32 +125,22 @@ function createCard(verse, index) {
 ================================ */
 
 function createCards() {
-
     randomVerseTrack.innerHTML = "";
 
-    const shuffled =
-        shuffleVerses();
+    const shuffled = shuffleVerses();
 
-
-    const cardsToCreate = 12;
-
+    const cardsToCreate = 40;
 
     for (let i = 0; i < cardsToCreate; i++) {
-
         const verse =
             shuffled[i % shuffled.length];
-
 
         const card =
             createCard(verse, i);
 
-
         randomVerseTrack.appendChild(card);
-
     }
-
 }
-
 
 /* ================================
    Card Selection
@@ -305,48 +295,66 @@ window.addEventListener(
 ================================ */
 
 function autoScroll(timestamp) {
-
-    console.log(
-        "scroll:",
-        window.scrollY,
-        "document:",
-        document.documentElement.scrollHeight,
-        "window:",
-        window.innerHeight
-    );
-
     if (!lastTime) {
-
         lastTime = timestamp;
-
     }
 
+    const delta = timestamp - lastTime;
 
-    const delta =
-        timestamp - lastTime;
-
-
-    lastTime =
-        timestamp;
-
+    lastTime = timestamp;
 
     if (
         !autoScrollPaused &&
         randomVerseRunning
     ) {
-
         window.scrollBy(
             0,
             delta * 0.025
         );
 
-    }
+        const cards =
+            randomVerseTrack.querySelectorAll(
+                ".random-verse-card"
+            );
 
+        if (cards.length >= 40) {
+
+            const firstCard = cards[0];
+            const secondCard = cards[1];
+
+            const firstRect =
+                firstCard.getBoundingClientRect();
+
+            const secondRect =
+                secondCard.getBoundingClientRect();
+
+            /*
+             * 当第一张卡片已经完全离开屏幕，
+             * 就把它移动到最后。
+             */
+            if (
+                firstRect.bottom < 72
+            ) {
+
+                const cardHeight =
+                    secondRect.top -
+                    firstRect.top;
+
+                randomVerseTrack.appendChild(
+                    firstCard
+                );
+
+                window.scrollBy(
+                    0,
+                    -cardHeight
+                );
+            }
+        }
+    }
 
     requestAnimationFrame(
         autoScroll
     );
-
 }
 
 

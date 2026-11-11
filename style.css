@@ -1710,15 +1710,16 @@ body {
     height:100vh;
     height:100dvh;
     margin:0 auto;
-    overflow:hidden;
     background:#fff8f3;
 }
 
 .random-verse-header{
-    position:absolute;
+    position:fixed;
     top:0;
-    left:0;
+    left:50%;
+    transform:translateX(-50%);
     width:100%;
+    max-width:430px;
     height:72px;
     display:flex;
     align-items:center;
@@ -1763,46 +1764,13 @@ body {
 ================================ */
 
 .random-verse-stage{
-    position:absolute;
-    top:72px;
-    left:0;
+    position:relative;
     width:100%;
-    height:calc(100vh - 125px);
-    height:calc(100dvh - 125px);
-    overflow-y:auto;
-    overflow-x:hidden;
-    -webkit-overflow-scrolling:touch;
-    touch-action:pan-y;
+    padding-top:92px;
+    padding-bottom:90px;
 }
 
-.random-verse-stage::before,
-.random-verse-stage::after{
-    content:"";
-    position:absolute;
-    left:0;
-    width:100%;
-    height:80px;
-    z-index:10;
-    pointer-events:none;
-}
 
-.random-verse-stage::before{
-    top:0;
-    background:linear-gradient(
-        to bottom,
-        #fff8f3,
-        rgba(255,248,243,0)
-    );
-}
-
-.random-verse-stage::after{
-    bottom:0;
-    background:linear-gradient(
-        to top,
-        #fff8f3,
-        rgba(255,248,243,0)
-    );
-}
 
 
 /* ================================

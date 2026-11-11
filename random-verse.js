@@ -8,7 +8,7 @@ const randomVerseStage = document.querySelector(".random-verse-stage");
 let randomVerseRunning = true;
 let autoScrollPaused = false;
 let autoScrollResumeTimer = null;
-let lastTime = 0;
+let lastTime = null;
 
 function shuffleVerses() {
     const shuffled = [...verses];
@@ -141,47 +141,7 @@ randomVerseBack.addEventListener("click", function() {
     window.location.href = "index.html";
 });
 
-let touchStartY = 0;
-
-randomVerseStage.addEventListener("touchstart", function(event) {
-    touchStartY = event.touches[0].clientY;
-    autoScrollPaused = true;
-
-    clearTimeout(autoScrollResumeTimer);
-});
-
-randomVerseStage.addEventListener("touchmove", function(event) {
-    const currentY = event.touches[0].clientY;
-    const distance = Math.abs(currentY - touchStartY);
-
-    if (distance > 5) {
-        autoScrollPaused = true;
-    }
-});
-
-randomVerseStage.addEventListener("touchend", function() {
-    clearTimeout(autoScrollResumeTimer);
-
-    autoScrollResumeTimer = setTimeout(function() {
-        autoScrollPaused = false;
-    }, 1200);
-});
-
-randomVerseStage.addEventListener("wheel", function() {
-    pauseAutoScroll();
-});
-
-randomVerseStage.addEventListener("mousedown", function() {
-    pauseAutoScroll();
-});
-
-randomVerseStage.addEventListener("mousemove", function(event) {
-    if (event.buttons) {
-        pauseAutoScroll();
-    }
-});
-
-randomVerseStage.addEventListener("mouseup", function() {
+randomVerseStage.addEventListener("scroll", function() {
     pauseAutoScroll();
 });
 
@@ -191,11 +151,10 @@ function autoScroll(timestamp) {
     }
 
     const delta = timestamp - lastTime;
-
     lastTime = timestamp;
 
     if (!autoScrollPaused && randomVerseRunning) {
-        randomVerseStage.scrollTop += delta * 0.025;
+        randomVerseStage.scrollTop += delta * 0.03;
     }
 
     requestAnimationFrame(autoScroll);

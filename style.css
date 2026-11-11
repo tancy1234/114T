@@ -1769,10 +1769,9 @@ body {
     width:100%;
     height:calc(100vh - 125px);
     height:calc(100dvh - 125px);
-    overflow-y:scroll;
+    overflow-y:auto;
     overflow-x:hidden;
     -webkit-overflow-scrolling:touch;
-    overscroll-behavior-y:contain;
     touch-action:pan-y;
 }
 
@@ -1812,8 +1811,6 @@ body {
 
 .random-verse-track{
     position:relative;
-    top:auto;
-    left:auto;
     width:100%;
     display:flex;
     flex-direction:column;

@@ -303,6 +303,10 @@ function autoScroll(timestamp) {
 
     lastTime = timestamp;
 
+    /*
+     * 只有自动滚动真正运行时，
+     * 才允许滚动和循环搬卡片。
+     */
     if (
         !autoScrollPaused &&
         randomVerseRunning
@@ -328,10 +332,6 @@ function autoScroll(timestamp) {
             const secondRect =
                 secondCard.getBoundingClientRect();
 
-            /*
-             * 当第一张卡片已经完全离开屏幕，
-             * 就把它移动到最后。
-             */
             if (
                 firstRect.bottom < 72
             ) {

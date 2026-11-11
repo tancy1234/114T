@@ -1705,36 +1705,50 @@ body {
    Random Verse Page
 ================================ */
 
+/* =========================================
+   RANDOM VERSE
+   ========================================= */
+
 .random-verse-page{
     position:relative;
+
     width:100%;
     max-width:430px;
-    min-height:100vh;
-    min-height:100dvh;
+
+    height:100vh;
+    height:100dvh;
+
     margin:0 auto;
+
     background:#fff8f3;
-    overflow:visible;
+
+    overflow:hidden;
 }
 
 
-/* ================================
-   Header
-================================ */
+/* =========================
+   HEADER
+   ========================= */
 
 .random-verse-header{
-    position:sticky;
+
+    position:absolute;
+
     top:0;
     left:0;
+
     width:100%;
     height:72px;
 
     display:flex;
     align-items:center;
+
     gap:12px;
 
     padding:10px 16px;
 
     background:rgba(255,248,243,.96);
+
     backdrop-filter:blur(8px);
     -webkit-backdrop-filter:blur(8px);
 
@@ -1744,72 +1758,105 @@ body {
 }
 
 
+.random-verse-header h2{
+
+    margin:0;
+
+    color:#795c55;
+
+    font-size:20px;
+}
+
+
+.random-verse-header p{
+
+    margin:3px 0 0;
+
+    color:#a1847d;
+
+    font-size:12px;
+}
+
+
 .random-verse-back{
+
     width:40px;
     height:40px;
 
     border:none;
     border-radius:50%;
 
-    background:#f8e4e5;
-    color:#765851;
+    background:#f3ded8;
 
-    font-size:21px;
+    color:#795c55;
+
+    font-size:22px;
 
     cursor:pointer;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
 
     flex-shrink:0;
 }
 
 
-.random-verse-header h2{
-    margin:0;
-    color:#6f5048;
-    font-size:21px;
+/* =========================
+   SCROLL CONTAINER
+   ========================= */
+
+.random-verse-container{
+
+    position:absolute;
+
+    top:72px;
+    bottom:0;
+
+    left:0;
+
+    width:100%;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    overscroll-behavior:contain;
+
+    -webkit-overflow-scrolling:touch;
+
+    scrollbar-width:none;
 }
 
 
-.random-verse-header p{
-    margin:3px 0 0;
-    color:#a1847d;
-    font-size:11px;
+.random-verse-container::-webkit-scrollbar{
+    display:none;
 }
 
 
-/* ================================
-   Card Track
-================================ */
+/* =========================
+   TRACK
+   ========================= */
 
 .random-verse-track{
+
     position:relative;
 
     width:100%;
 
     display:flex;
+
     flex-direction:column;
+
     align-items:center;
 
     gap:18px;
 
-    padding:35px 0 120px;
+    padding:35px 0 130px;
 }
 
 
-/* ================================
-   Camera Fade
-================================ */
-
-
-
-/* ================================
-   Card
-================================ */
+/* =========================
+   CARD
+   ========================= */
 
 .random-verse-card{
+
     width:290px;
     height:150px;
 
@@ -1826,6 +1873,7 @@ body {
 
 
 .random-verse-card-inner{
+
     position:relative;
 
     width:100%;
@@ -1838,17 +1886,16 @@ body {
 }
 
 
-.random-verse-card.flipped .random-verse-card-inner{
+.random-verse-card.flipped
+.random-verse-card-inner{
+
     transform:rotateY(180deg);
 }
 
 
-/* ================================
-   Front / Back
-================================ */
-
 .random-verse-card-front,
 .random-verse-card-back{
+
     position:absolute;
 
     inset:0;
@@ -1859,6 +1906,7 @@ body {
     border-radius:22px;
 
     backface-visibility:hidden;
+
     -webkit-backface-visibility:hidden;
 
     box-shadow:
@@ -1866,91 +1914,14 @@ body {
 }
 
 
-/* ================================
-   Front
-================================ */
+/* =========================
+   FRONT
+   ========================= */
 
 .random-verse-card-front{
-    display:flex;
-    flex-direction:column;
-
-    align-items:center;
-    justify-content:center;
-
-    background:#fff;
-
-    border:1px solid #ead3d0;
-
-    color:#6f5048;
-}
-
-
-.random-verse-card-number{
-    position:absolute;
-
-    top:13px;
-    left:17px;
-
-    font-size:11px;
-
-    letter-spacing:1px;
-
-    color:#c4939a;
-
-    font-weight:bold;
-}
-
-
-.random-verse-card-icon{
-    font-size:22px;
-
-    color:#d19aa2;
-
-    margin-bottom:7px;
-}
-
-
-.random-verse-card-title{
-    padding:0 20px;
-
-    text-align:center;
-
-    font-size:18px;
-
-    font-weight:bold;
-
-    color:#6f5048;
-}
-
-
-.random-verse-card-reference{
-    margin-top:7px;
-
-    font-size:11px;
-
-    color:#a47d77;
-}
-
-
-.random-verse-card-hint{
-    position:absolute;
-
-    bottom:10px;
-
-    font-size:9px;
-
-    color:#c2a09b;
-}
-
-
-/* ================================
-   Back
-================================ */
-
-.random-verse-card-back{
-    transform:rotateY(180deg);
 
     display:flex;
+
     flex-direction:column;
 
     align-items:center;
@@ -1958,79 +1929,151 @@ body {
 
     padding:20px;
 
+    background:#f8e9e3;
+
+    border:1px solid #efd7d0;
+}
+
+
+.random-verse-card-number{
+
+    position:absolute;
+
+    top:12px;
+    left:16px;
+
+    color:#b28f87;
+
+    font-size:11px;
+}
+
+
+.random-verse-card-icon{
+
+    margin-bottom:8px;
+
+    color:#c7988d;
+
+    font-size:24px;
+}
+
+
+.random-verse-card-title{
+
+    color:#795c55;
+
+    font-size:17px;
+
+    font-weight:600;
+
     text-align:center;
+}
 
-    background:linear-gradient(
-        145deg,
-        #fff8f3,
-        #fff0f4
-    );
 
-    border:1px solid #e8ced1;
+.random-verse-card-reference{
+
+    margin-top:5px;
+
+    color:#a1847d;
+
+    font-size:12px;
+}
+
+
+.random-verse-card-hint{
+
+    margin-top:10px;
+
+    color:#b99a93;
+
+    font-size:11px;
+}
+
+
+/* =========================
+   BACK
+   ========================= */
+
+.random-verse-card-back{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:22px;
+
+    background:#fff;
+
+    border:1px solid #ead8d2;
+
+    transform:rotateY(180deg);
+
+    text-align:center;
 }
 
 
 .random-verse-card-back-title{
-    color:#b47780;
 
-    font-size:13px;
+    margin-bottom:10px;
 
-    font-weight:bold;
+    color:#795c55;
 
-    margin-bottom:9px;
+    font-size:16px;
+
+    font-weight:600;
 }
 
 
 .random-verse-card-back-text{
-    color:#6d5550;
 
-    font-size:12px;
+    color:#765f59;
+
+    font-size:13px;
 
     line-height:1.7;
 }
 
 
 .random-verse-card-back-reference{
-    margin-top:9px;
 
-    color:#a16f78;
+    margin-top:10px;
+
+    color:#a1847d;
 
     font-size:11px;
-
-    font-weight:bold;
 }
 
 
-/* ================================
-   Selected Card
-================================ */
-
-.random-verse-card.dimmed{
-    opacity:.15;
-}
-
+/* =========================
+   SELECTED
+   ========================= */
 
 .random-verse-card.selected{
+
     transform:scale(1.03);
 
     z-index:30;
 }
 
 
-/* ================================
-   Bottom Hint
-================================ */
+/* =========================
+   BOTTOM HINT
+   ========================= */
 
 .random-verse-hint{
-    position:fixed;
 
-    bottom:24px;
+    position:absolute;
+
+    bottom:18px;
 
     left:50%;
 
     transform:translateX(-50%);
 
-    width:min(100%,430px);
+    width:100%;
 
     text-align:center;
 
@@ -2038,7 +2081,15 @@ body {
 
     font-size:12px;
 
-    z-index:60;
+    z-index:110;
 
     pointer-events:none;
+
+    padding:8px 0;
+
+    background:linear-gradient(
+        to top,
+        #fff8f3 55%,
+        rgba(255,248,243,0)
+    );
 }

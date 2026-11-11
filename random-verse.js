@@ -1,8 +1,10 @@
 import { verses } from "./verses.js";
 
-
 const randomVerseBack =
     document.getElementById("random-verse-back");
+
+const randomVerseContainer =
+    document.getElementById("random-verse-container");
 
 const randomVerseTrack =
     document.getElementById("random-verse-track");
@@ -11,18 +13,13 @@ const randomVerseHint =
     document.getElementById("random-verse-hint");
 
 
-let randomVerseRunning = true;
-
 let autoScrollPaused = false;
-
-let autoScrollResumeTimer = null;
-
-let lastTime = null;
+let autoScrollTimer = null;
 
 
-/* ================================
-   Shuffle
-================================ */
+/* =========================================
+   SHUFFLE
+   ========================================= */
 
 function shuffleVerses() {
 
@@ -31,7 +28,9 @@ function shuffleVerses() {
     for (let i = shuffled.length - 1; i > 0; i--) {
 
         const j =
-            Math.floor(Math.random() * (i + 1));
+            Math.floor(
+                Math.random() * (i + 1)
+            );
 
         [
             shuffled[i],
@@ -46,9 +45,9 @@ function shuffleVerses() {
 }
 
 
-/* ================================
-   Create Card
-================================ */
+/* =========================================
+   CREATE CARD
+   ========================================= */
 
 function createCard(verse, index) {
 
@@ -57,7 +56,6 @@ function createCard(verse, index) {
 
     card.className =
         "random-verse-card";
-
 
     card.innerHTML = `
 
@@ -109,59 +107,75 @@ function createCard(verse, index) {
     `;
 
 
-    card.addEventListener("click", function() {
+    card.addEventListener(
+        "click",
+        function() {
 
-        selectCard(card);
+            selectCard(card);
 
-    });
+        }
+    );
 
 
     return card;
 }
 
 
-/* ================================
-   Create Cards
-================================ */
+/* =========================================
+   CREATE CARDS
+   ========================================= */
 
 function createCards() {
+
     randomVerseTrack.innerHTML = "";
 
-    const shuffled = shuffleVerses();
+    const shuffled =
+        shuffleVerses();
+
 
     const cardsToCreate = 40;
 
-    for (let i = 0; i < cardsToCreate; i++) {
+
+    for (
+        let i = 0;
+        i < cardsToCreate;
+        i++
+    ) {
+
         const verse =
-            shuffled[i % shuffled.length];
+            shuffled[
+                i % shuffled.length
+            ];
+
 
         const card =
-            createCard(verse, i);
+            createCard(
+                verse,
+                i
+            );
 
-        randomVerseTrack.appendChild(card);
+
+        randomVerseTrack.appendChild(
+            card
+        );
     }
 }
 
-/* ================================
-   Card Selection
-================================ */
+
+/* =========================================
+   CARD SELECT
+   ========================================= */
 
 function selectCard(card) {
 
     pauseAutoScroll();
 
 
-    /*
-     * Click same card
-     * → close it
-     */
-
     if (
         card.classList.contains("flipped")
     ) {
 
         card.classList.remove("flipped");
-
         card.classList.remove("selected");
 
         randomVerseHint.textContent =
@@ -171,32 +185,26 @@ function selectCard(card) {
     }
 
 
-    /*
-     * Close other cards
-     */
-
     const flippedCards =
         randomVerseTrack.querySelectorAll(
             ".random-verse-card.flipped"
         );
 
 
-    flippedCards.forEach(function(otherCard) {
+    flippedCards.forEach(
+        function(otherCard) {
 
-        otherCard.classList.remove(
-            "flipped"
-        );
+            otherCard.classList.remove(
+                "flipped"
+            );
 
-        otherCard.classList.remove(
-            "selected"
-        );
+            otherCard.classList.remove(
+                "selected"
+            );
 
-    });
+        }
+    );
 
-
-    /*
-     * Select new card
-     */
 
     card.classList.add("selected");
 
@@ -205,28 +213,30 @@ function selectCard(card) {
         "♡ 你选择了这一节";
 
 
-    /*
-     * Small delay before flip
-     */
+    setTimeout(
+        function() {
 
-    setTimeout(function() {
+            if (
+                card.classList.contains(
+                    "selected"
+                )
+            ) {
 
-        if (
-            card.classList.contains("selected")
-        ) {
+                card.classList.add(
+                    "flipped"
+                );
 
-            card.classList.add("flipped");
+            }
 
-        }
-
-    }, 100);
-
+        },
+        100
+    );
 }
 
 
-/* ================================
-   Pause Auto Scroll
-================================ */
+/* =========================================
+   PAUSE AUTO SCROLL
+   ========================================= */
 
 function pauseAutoScroll() {
 
@@ -234,133 +244,45 @@ function pauseAutoScroll() {
 
 
     clearTimeout(
-        autoScrollResumeTimer
+        autoScrollTimer
     );
 
 
-    autoScrollResumeTimer =
-        setTimeout(function() {
+    autoScrollTimer =
+        setTimeout(
+            function() {
 
-            autoScrollPaused = false;
+                autoScrollPaused = false;
 
-        }, 1200);
-
+            },
+            1500
+        );
 }
 
 
-/* ================================
-   Detect Manual Scroll
-================================ */
-
-let lastScrollY =
-    window.scrollY;
+/* =========================================
+   USER SCROLL
+   ========================================= */
 
 
-window.addEventListener(
-    "scroll",
+
+/* =========================================
+   AUTO SCROLL
+   ========================================= */
+
+setInterval(
     function() {
 
-        const currentScrollY =
-            window.scrollY;
-
-
-        /*
-         * Ignore very small
-         * automatic movement
-         */
-
-        if (
-            Math.abs(
-                currentScrollY - lastScrollY
-            ) > 1
-        ) {
-
-            pauseAutoScroll();
-
-        }
-
-
-        lastScrollY =
-            currentScrollY;
+        randomVerseContainer.scrollTop += 0.5;
 
     },
-    {
-        passive:true
-    }
+    20
 );
 
 
-/* ================================
-   Auto Scroll
-================================ */
-
-function autoScroll(timestamp) {
-    if (!lastTime) {
-        lastTime = timestamp;
-    }
-
-    const delta = timestamp - lastTime;
-
-    lastTime = timestamp;
-
-    /*
-     * 只有自动滚动真正运行时，
-     * 才允许滚动和循环搬卡片。
-     */
-    if (
-        !autoScrollPaused &&
-        randomVerseRunning
-    ) {
-        window.scrollBy(
-            0,
-            delta * 0.025
-        );
-
-        const cards =
-            randomVerseTrack.querySelectorAll(
-                ".random-verse-card"
-            );
-
-        if (cards.length >= 40) {
-
-            const firstCard = cards[0];
-            const secondCard = cards[1];
-
-            const firstRect =
-                firstCard.getBoundingClientRect();
-
-            const secondRect =
-                secondCard.getBoundingClientRect();
-
-            if (
-                firstRect.bottom < 72
-            ) {
-
-                const cardHeight =
-                    secondRect.top -
-                    firstRect.top;
-
-                randomVerseTrack.appendChild(
-                    firstCard
-                );
-
-                window.scrollBy(
-                    0,
-                    -cardHeight
-                );
-            }
-        }
-    }
-
-    requestAnimationFrame(
-        autoScroll
-    );
-}
-
-
-/* ================================
-   Back Button
-================================ */
+/* =========================================
+   BACK BUTTON
+   ========================================= */
 
 randomVerseBack.addEventListener(
     "click",
@@ -373,17 +295,8 @@ randomVerseBack.addEventListener(
 );
 
 
-/* ================================
-   Start
-================================ */
+/* =========================================
+   START
+   ========================================= */
 
 createCards();
-
-
-requestAnimationFrame(
-    autoScroll
-);
-
-console.log(
-    "AUTO SCROLL STARTED"
-);

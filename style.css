@@ -1707,8 +1707,8 @@ body {
     position:relative;
     width:100%;
     max-width:430px;
-    min-height:100vh;
-    min-height:100dvh;
+    height:100vh;
+    height:100dvh;
     margin:0 auto;
     overflow:hidden;
     background:#fff8f3;
@@ -1769,10 +1769,11 @@ body {
     width:100%;
     height:calc(100vh - 125px);
     height:calc(100dvh - 125px);
-    overflow-y:auto;
+    overflow-y:scroll;
     overflow-x:hidden;
     -webkit-overflow-scrolling:touch;
     overscroll-behavior-y:contain;
+    touch-action:pan-y;
 }
 
 .random-verse-stage::before,
@@ -1810,15 +1811,15 @@ body {
 ================================ */
 
 .random-verse-track{
-    position:absolute;
-    top:0;
-    left:0;
+    position:relative;
+    top:auto;
+    left:auto;
     width:100%;
     display:flex;
     flex-direction:column;
     align-items:center;
     gap:18px;
-    padding:25px 0;
+    padding:25px 0 40px;
 }
 
 

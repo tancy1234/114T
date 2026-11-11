@@ -1803,55 +1803,6 @@ body {
    Camera Fade
 ================================ */
 
-.random-verse-track::before{
-    content:"";
-
-    position:fixed;
-
-    top:72px;
-    left:50%;
-
-    transform:translateX(-50%);
-
-    width:min(100%,430px);
-    height:80px;
-
-    z-index:50;
-
-    pointer-events:none;
-
-    background:linear-gradient(
-        to bottom,
-        #fff8f3,
-        rgba(255,248,243,0)
-    );
-}
-
-
-.random-verse-track::after{
-    content:"";
-
-    position:fixed;
-
-    bottom:0;
-    left:50%;
-
-    transform:translateX(-50%);
-
-    width:min(100%,430px);
-    height:80px;
-
-    z-index:50;
-
-    pointer-events:none;
-
-    background:linear-gradient(
-        to top,
-        #fff8f3,
-        rgba(255,248,243,0)
-    );
-}
-
 
 /* ================================
    Card

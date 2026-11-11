@@ -308,7 +308,11 @@ function autoScroll(timestamp) {
 
     console.log(
         "scroll:",
-        window.scrollY
+        window.scrollY,
+        "document:",
+        document.documentElement.scrollHeight,
+        "window:",
+        window.innerHeight
     );
 
     if (!lastTime) {

@@ -2946,3 +2946,471 @@ body {
     }
 
 }
+
+
+/* =========================================
+   OUR MEMBERS SECTION
+   ========================================= */
+
+.members-section{
+    padding:40px 20px;
+
+    background:#fff4f0;
+
+    text-align:center;
+}
+
+.members-section .section-title h2{
+    margin:0 0 6px;
+
+    color:#795c55;
+
+    font-size:22px;
+
+    font-weight:600;
+}
+
+.members-section .section-title p{
+    margin:0;
+
+    color:#a1847d;
+
+    font-size:12px;
+}
+
+.members-preview{
+    margin-top:22px;
+
+    padding:22px 18px;
+
+    border-radius:18px;
+
+    background:#fffaf7;
+
+    box-shadow:
+        0 4px 15px
+        rgba(100,70,60,.08);
+}
+
+.members-preview-text p{
+    margin:0 0 18px;
+
+    color:#765f59;
+
+    font-size:13px;
+
+    line-height:1.8;
+}
+
+.members-view-button{
+    display:inline-block;
+
+    padding:10px 18px;
+
+    border-radius:30px;
+
+    background:#efdcd6;
+
+    color:#795c55;
+
+    font-size:12px;
+
+    text-decoration:none;
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+}
+
+.members-view-button:active{
+    transform:scale(.96);
+
+    background:#e8cfc8;
+}
+
+
+/* =========================================
+   MEMBER PAGE
+   ========================================= */
+
+.member-body{
+    margin:0;
+
+    min-height:100vh;
+    min-height:100dvh;
+
+    background:#eadfd9;
+
+    color:#765f59;
+
+    font-family:
+        "PingFang SC",
+        "Hiragino Sans GB",
+        "Microsoft YaHei",
+        sans-serif;
+}
+
+
+.member-page{
+    position:relative;
+
+    width:100%;
+    max-width:430px;
+
+    min-height:100vh;
+    min-height:100dvh;
+
+    margin:0 auto;
+
+    background:#fffaf7;
+
+    box-shadow:
+        0 0 25px
+        rgba(100,70,60,.08);
+
+    overflow-x:hidden;
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.member-header{
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:8px;
+
+    width:100%;
+
+    padding:14px 12px;
+
+    box-sizing:border-box;
+
+    background:
+        rgba(255,250,247,.96);
+
+    border-bottom:
+        1px solid
+        rgba(190,145,135,.22);
+
+    backdrop-filter:blur(12px);
+
+    -webkit-backdrop-filter:blur(12px);
+}
+
+
+.member-header-title{
+    min-width:0;
+
+    flex:1;
+
+    overflow:hidden;
+}
+
+
+.member-header-title h1{
+    margin:0 0 4px;
+
+    color:#9a766e;
+
+    font-size:21px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+}
+
+
+.member-header-title p{
+    margin:0;
+
+    color:#a88981;
+
+    font-size:11px;
+}
+
+
+.member-back{
+    flex-shrink:0;
+
+    white-space:nowrap;
+
+    min-width:68px;
+
+    border:none;
+
+    padding:9px 14px;
+
+    border-radius:30px;
+
+    background:#efdcd6;
+
+    color:#795c55;
+
+    font-size:12px;
+
+    cursor:pointer;
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+}
+
+
+.member-back:active{
+    transform:scale(.95);
+
+    background:#e8cfc8;
+}
+
+
+/* =========================================
+   INTRO
+   ========================================= */
+
+.member-intro{
+    padding:
+        38px
+        22px
+        28px;
+
+    text-align:center;
+
+    background:#fff4f0;
+}
+
+
+.member-intro-small{
+    margin:0 0 8px;
+
+    color:#b28f87;
+
+    font-size:10px;
+
+    letter-spacing:3px;
+}
+
+
+.member-intro h2{
+    margin:0 0 12px;
+
+    color:#795c55;
+
+    font-size:23px;
+
+    font-weight:600;
+}
+
+
+.member-intro > p:last-child{
+    margin:0;
+
+    color:#a1847d;
+
+    font-size:13px;
+
+    line-height:1.9;
+}
+
+
+/* =========================================
+   MEMBER LIST
+   ========================================= */
+
+.member-list{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:0;
+}
+
+
+/* =========================================
+   MEMBER CARD
+   ========================================= */
+
+.member-card{
+    display:flex;
+
+    gap:16px;
+
+    padding:
+        24px
+        20px;
+
+    background:#fffaf7;
+
+    border-bottom:
+        1px solid
+        rgba(190,145,135,.15);
+}
+
+
+.member-card:nth-child(even){
+    background:#f5e9e4;
+}
+
+
+/* =========================================
+   MEMBER PHOTO
+   ========================================= */
+
+.member-photo{
+    flex-shrink:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:105px;
+
+    height:125px;
+
+    overflow:hidden;
+
+    background:#f4e7e2;
+
+    color:#c59f95;
+
+    font-size:30px;
+
+    border-radius:4px;
+}
+
+
+.member-photo img{
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    border-radius:0;
+}
+
+
+/* =========================================
+   MEMBER INFO
+   ========================================= */
+
+.member-info{
+    flex:1;
+
+    min-width:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+}
+
+
+.member-number{
+    margin:0 0 6px;
+
+    color:#b28f87;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+}
+
+
+.member-info h3{
+    margin:0 0 9px;
+
+    color:#795c55;
+
+    font-size:19px;
+
+    font-weight:600;
+}
+
+
+.member-description{
+    margin:0;
+
+    color:#765f59;
+
+    font-size:12px;
+
+    line-height:1.8;
+}
+
+
+/* =========================================
+   END
+   ========================================= */
+
+.member-end{
+    padding:
+        34px
+        20px
+        55px;
+
+    text-align:center;
+
+    background:#fffaf7;
+}
+
+
+.member-end p{
+    margin:0;
+
+    color:#b28f87;
+
+    font-size:12px;
+
+    letter-spacing:1px;
+}
+
+
+/* =========================================
+   SMALL PHONE
+   ========================================= */
+
+@media (max-width:360px){
+
+    .member-card{
+        gap:12px;
+
+        padding:
+            20px
+            16px;
+    }
+
+
+    .member-photo{
+        width:88px;
+
+        height:108px;
+    }
+
+
+    .member-info h3{
+        font-size:17px;
+    }
+
+
+    .member-description{
+        font-size:11px;
+    }
+
+}

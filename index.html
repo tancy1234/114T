@@ -7,15 +7,13 @@
             window.location.search
         );
 
-        const fromRandomVerse =
-            urlParams.get("from") === "random-verse";
-
-        const fromMemories =
-            urlParams.get("from") === "memories";
+        const from =
+            urlParams.get("from");
 
         if (
-            fromRandomVerse ||
-            fromMemories
+            from === "random-verse" ||
+            from === "memories" ||
+            from === "member"
         ) {
             document.documentElement.classList.add(
                 "from-subpage"
@@ -25,9 +23,11 @@
 
     <style>
         html.from-subpage #opening-page {
-            display: none !important;
+            display:none !important;
         }
     </style>
+
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -772,13 +772,33 @@
         </section>
 
 
-        <section class="content-section">
+        <section class="members-section">
 
-            <h2>114T 成员</h2>
+            <div class="section-title">
+                <h2>Our Members ♡</h2>
 
-            <p>
-                这里之后可以介绍每一位 CG 成员。
-            </p>
+                <p>
+                    我们的 CG Group
+                </p>
+            </div>
+
+            <div class="members-preview">
+
+                <div class="members-preview-text">
+                    <p>
+                        认识我们 CG Group 的每一位成员，
+                        一起看看属于我们的故事。
+                    </p>
+                </div>
+
+                <a
+                    href="member.html"
+                    class="members-view-button"
+                >
+                    查看我们的成员 ♡
+                </a>
+
+            </div>
 
         </section>
 

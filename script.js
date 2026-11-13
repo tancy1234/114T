@@ -43,6 +43,9 @@ const fromRandomVerse =
 const fromMemories =
     urlParams.get("from") === "memories";
 
+const fromMember =
+    urlParams.get("from") === "member";
+
 
 onAuthStateChanged(
     auth,
@@ -62,7 +65,8 @@ onAuthStateChanged(
 
         if (
             fromRandomVerse ||
-            fromMemories
+            fromMemories ||
+            fromMember
         ) {
 
             // User is logged in

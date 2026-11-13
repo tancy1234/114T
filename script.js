@@ -1095,9 +1095,13 @@ const quizArea = document.getElementById("quiz-area");
 const quizQuestion = document.getElementById("quiz-question");
 const quizOptions = document.getElementById("quiz-options");
 const quizResult = document.getElementById("quiz-result");
+
+const quizTimerElement = document.getElementById("quiz-timer");
+const quizTimerText = document.getElementById("quiz-timer-text");
+
+
 const quizAnswerInfo = document.getElementById("quiz-answer-info");
 const nextQuizButton = document.getElementById("next-quiz-button");
-const changeDifficultyButton = document.getElementById("change-difficulty-button");
 const quizCorrect = document.getElementById("quiz-correct");
 const quizXp = document.getElementById("quiz-xp");
 
@@ -1113,6 +1117,16 @@ let currentQuiz = null;
 let selectedDifficulty = null;
 let quizAnswered = false;
 let quizDataLoaded = false;
+
+let quizTimer = null;
+let quizTimeLeft = 0;
+
+const QUIZ_TIME = {
+    Easy: 15,
+    Medium: 20,
+    Hard: 30,
+    Insane: 40
+};
 
 async function loadQuizData() {
     try {
@@ -1139,6 +1153,119 @@ async function loadQuizData() {
         quizDataLoaded = false;
         quizQuestion.textContent = "无法读取 Quiz 题库。";
     }
+}
+
+function stopQuizTimer() {
+    if (quizTimer) {
+        clearInterval(quizTimer);
+        quizTimer = null;
+    }
+}
+
+
+function startQuizTimer() {
+    stopQuizTimer();
+
+    quizTimeLeft =
+        QUIZ_TIME[selectedDifficulty] || 20;
+
+    if (quizTimerText) {
+        quizTimerText.textContent = quizTimeLeft;
+    }
+
+    if (quizTimerElement) {
+        quizTimerElement.classList.remove(
+            "warning",
+            "danger"
+        );
+    }
+
+    quizTimer = setInterval(function() {
+
+        quizTimeLeft--;
+
+        if (quizTimerText) {
+            quizTimerText.textContent =
+                quizTimeLeft;
+        }
+
+        if (quizTimerElement) {
+
+            quizTimerElement.classList.remove(
+                "warning",
+                "danger"
+            );
+
+            if (quizTimeLeft <= 5) {
+
+                quizTimerElement.classList.add(
+                    "danger"
+                );
+
+            } else if (quizTimeLeft <= 10) {
+
+                quizTimerElement.classList.add(
+                    "warning"
+                );
+            }
+        }
+
+        if (quizTimeLeft <= 0) {
+
+            stopQuizTimer();
+
+            handleQuizTimeout();
+        }
+
+    }, 1000);
+}
+
+
+async function handleQuizTimeout() {
+
+    if (quizAnswered) {
+        return;
+    }
+
+    quizAnswered = true;
+
+    const buttons =
+        quizOptions.querySelectorAll(".quiz-option");
+
+    buttons.forEach(function(button) {
+        button.disabled = true;
+    });
+
+    const correctAnswer =
+        currentQuiz.answer;
+
+    buttons.forEach(function(button) {
+
+        if (
+            button.textContent.startsWith(
+                correctAnswer + "."
+            )
+        ) {
+            button.classList.add("correct");
+        }
+
+    });
+
+    quizResult.textContent =
+        "⏰ 时间到！今天的 Quiz 已结束。";
+
+    quizAnswerInfo.innerHTML =
+        `<strong>答案：</strong>${correctAnswer}<br>` +
+        `<strong>经文：</strong>${currentQuiz.verse}<br>` +
+        `<strong>解释：</strong>${currentQuiz.explanation}`;
+
+    if (nextQuizButton) {
+        nextQuizButton.style.display = "none";
+    }
+
+    
+
+    await saveQuizResult(0, false);
 }
 
 function getRandomQuestion() {
@@ -1179,6 +1306,8 @@ function showQuizQuestion() {
     quizQuestion.textContent = currentQuiz.question;
     quizOptions.innerHTML = "";
 
+    startQuizTimer();
+
     const letters = ["A","B","C","D"];
 
     letters.forEach(function(letter) {
@@ -1199,6 +1328,8 @@ async function answerQuiz(selectedAnswer) {
     if (quizAnswered) return;
 
     quizAnswered = true;
+
+    stopQuizTimer();
 
     const buttons = quizOptions.querySelectorAll(".quiz-option");
 
@@ -1239,7 +1370,7 @@ async function answerQuiz(selectedAnswer) {
         nextQuizButton.style.display = "none";
     }
 
-    changeDifficultyButton.style.display = "none";
+    
 }
 
 async function saveQuizResult(rewardXP, correct) {
@@ -1338,12 +1469,7 @@ if (nextQuizButton) {
     });
 }
 
-changeDifficultyButton.addEventListener("click", function() {
-    quizArea.style.display = "none";
-    quizDifficulty.style.display = "grid";
-    currentQuiz = null;
-    selectedDifficulty = null;
-});
+
 
 function getQuizTodayDate() {
     const now = new Date();
@@ -1373,23 +1499,31 @@ async function loadQuizStats() {
         quizXp.textContent = (gameStats.xp || 0) + " XP";
 
         if (gameStats.lastQuizDate === today) {
+
+            stopQuizTimer();
+
             quizDifficulty.style.display = "none";
             quizArea.style.display = "block";
 
-            quizQuestion.textContent = "今天的 Quiz 已经完成啦 ♡";
+            quizQuestion.textContent =
+                "今天的 Quiz 已经完成啦 ♡";
+
             quizOptions.innerHTML = "";
-            quizResult.textContent = "明天再来挑战吧！";
+
+            quizResult.textContent =
+                "明天再来挑战吧！";
+
             quizAnswerInfo.textContent = "";
 
             if (nextQuizButton) {
                 nextQuizButton.style.display = "none";
             }
 
-            changeDifficultyButton.style.display = "none";
+            
         } else {
             quizDifficulty.style.display = "grid";
             quizArea.style.display = "none";
-            changeDifficultyButton.style.display = "block";
+            
         }
     } catch (error) {
         console.error("Load Quiz Stats Error:", error);

@@ -1623,7 +1623,43 @@ body {
 
 .quiz-completed{padding:18px;text-align:center;background:#fff8f3;border-radius:16px;color:#765c55;}
 
+.quiz-timer {
+    width: fit-content;
+    margin: 0 auto 15px auto;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: #f3e1dc;
+    color: #795c55;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
 
+.quiz-timer.warning {
+    background: #f5d2cc;
+    color: #a34f4f;
+    transform: scale(1.05);
+}
+
+.quiz-timer.danger {
+    background: #e9aaa3;
+    color: white;
+    animation: quizTimerPulse 0.8s infinite;
+}
+
+@keyframes quizTimerPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
 
 .leaderboard-section{padding:20px 16px 30px;}
 .leaderboard-card{position:relative;overflow:hidden;background:linear-gradient(145deg,#fff8f3,#fff0f4);border:1px solid #f0d6d6;border-radius:24px;padding:24px 18px;box-shadow:0 8px 25px rgba(120,80,70,.08);}

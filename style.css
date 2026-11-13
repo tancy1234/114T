@@ -2093,3 +2093,829 @@ body {
         rgba(255,248,243,0)
     );
 }
+
+/* =========================================
+   OUR MEMORIES
+   ========================================= */
+
+.memories-section{
+    width:100%;
+    padding:30px 18px 40px;
+}
+
+
+.memories-section .section-title{
+    text-align:center;
+    margin-bottom:22px;
+}
+
+
+.memories-section .section-title h2{
+    margin:0;
+    color:#795c55;
+    font-size:24px;
+    font-weight:700;
+}
+
+
+.memories-section .section-title p{
+    margin:6px 0 0;
+    color:#a1847d;
+    font-size:13px;
+}
+
+
+/* MEMORY GRID */
+
+.memory-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:14px;
+}
+
+
+/* CARD */
+
+.memory-card{
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+
+    box-shadow:
+        0 5px 18px rgba(100,70,60,.08);
+
+    border:1px solid #f0dfda;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+    cursor:pointer;
+}
+
+
+.memory-card:active{
+    transform:scale(.97);
+}
+
+
+/* IMAGE */
+
+.memory-image{
+    width:100%;
+    aspect-ratio:1 / 1;
+
+    background:#f8e9e3;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+}
+
+
+.memory-placeholder{
+    width:58px;
+    height:58px;
+
+    border-radius:50%;
+
+    background:#f3ded8;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:26px;
+
+    color:#a1847d;
+}
+
+
+/* INFO */
+
+.memory-info{
+    padding:12px 12px 14px;
+}
+
+
+.memory-info h3{
+    margin:0;
+
+    color:#795c55;
+
+    font-size:14px;
+    font-weight:600;
+
+    line-height:1.4;
+}
+
+
+.memory-info p{
+    margin:5px 0 0;
+
+    color:#a1847d;
+
+    font-size:11px;
+
+    line-height:1.5;
+}
+
+.memories-page{
+    position:relative;
+
+    width:100%;
+    max-width:430px;
+
+    min-height:100vh;
+    min-height:100dvh;
+
+    margin:0 auto;
+
+    background:#fffaf7;
+
+    box-shadow:
+        0 0 25px rgba(100,70,60,.08);
+
+    overflow-x:hidden;
+}
+
+
+.memories-header{
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+    width:100%;
+    height:72px;
+
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    padding:10px 16px;
+
+    background:rgba(255,248,243,.96);
+
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+
+    border-bottom:1px solid #f0dddd;
+}
+
+
+.memories-header h2{
+    margin:0;
+
+    color:#795c55;
+
+    font-size:20px;
+}
+
+
+.memories-header p{
+    margin:3px 0 0;
+
+    color:#a1847d;
+
+    font-size:12px;
+}
+
+
+.memories-back{
+    width:40px;
+    height:40px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#f3ded8;
+
+    color:#795c55;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    flex-shrink:0;
+}
+
+.memories-view-button{
+    display:inline-block;
+
+    margin-top:12px;
+
+    padding:9px 18px;
+
+    border-radius:999px;
+
+    background:#f3ded8;
+
+    color:#795c55;
+
+    font-size:12px;
+    font-weight:600;
+
+    text-decoration:none;
+
+    border:1px solid #ead0c9;
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+}
+
+
+.memories-view-button:active{
+    transform:scale(.95);
+
+    background:#eed4cd;
+}
+
+/* =========================================
+   OUR MEMORIES PAGE
+   ========================================= */
+
+.memories-body{
+    margin:0;
+    min-height:100vh;
+    min-height:100dvh;
+
+    background:#eadfd9;
+
+    color:#765f59;
+
+    font-family:
+        "PingFang SC",
+        "Hiragino Sans GB",
+        "Microsoft YaHei",
+        sans-serif;
+}
+
+
+.memories-page{
+    position:relative;
+
+    width:100%;
+    max-width:430px;
+
+    min-height:100vh;
+    min-height:100dvh;
+
+    margin:0 auto;
+
+    background:#fffaf7;
+
+    box-shadow:
+        0 0 25px rgba(100,70,60,.08);
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.memories-header{
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    padding:14px 16px;
+
+    background:
+        rgba(255,250,247,.96);
+
+    border-bottom:
+        1px solid rgba(190,145,135,.22);
+
+    backdrop-filter:blur(12px);
+
+    -webkit-backdrop-filter:blur(12px);
+}
+
+
+.memories-header-title{
+    min-width:0;
+}
+
+
+.memories-header-title h1{
+    margin:0 0 4px;
+
+    color:#9a766e;
+
+    font-size:21px;
+
+    font-weight:600;
+}
+
+
+.memories-header-title p{
+    margin:0;
+
+    color:#a88981;
+
+    font-size:11px;
+}
+
+
+.memories-back{
+    flex-shrink:0;
+
+    border:none;
+
+    padding:9px 14px;
+
+    border-radius:30px;
+
+    background:#efdcd6;
+
+    color:#795c55;
+
+    font-size:12px;
+
+    cursor:pointer;
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+}
+
+
+.memories-back:active{
+    transform:scale(.95);
+
+    background:#e8cfc8;
+}
+
+
+/* =========================================
+   FILM STRIP
+   ========================================= */
+
+.memory-film-viewport{
+    width:100%;
+
+    overflow-x:auto;
+
+    overflow-y:hidden;
+
+    -webkit-overflow-scrolling:touch;
+
+    touch-action:pan-x;
+
+    scrollbar-width:none;
+}
+
+
+.memory-film-viewport::-webkit-scrollbar{
+    display:none;
+}
+
+
+.memory-film-track{
+    display:flex;
+
+    width:max-content;
+
+    gap:16px;
+
+    padding:24px 16px;
+
+    background-color:#765f59;
+
+    background-image:
+        radial-gradient(
+            circle,
+            #fffaf7 3px,
+            transparent 3.5px
+        ),
+        radial-gradient(
+            circle,
+            #fffaf7 3px,
+            transparent 3.5px
+        );
+
+    background-size:
+        22px 14px,
+        22px 14px;
+
+    background-position:
+        5px 4px,
+        5px calc(100% - 4px);
+
+    background-repeat:repeat-x;
+}
+
+
+.memory-film-set{
+    display:flex;
+
+    flex:0 0 auto;
+
+    gap:16px;
+}
+
+
+.memory-film-photo{
+    flex:0 0 135px;
+
+    width:135px;
+
+    padding:
+        6px
+        6px
+        10px;
+
+    background:#fffaf7;
+
+    box-shadow:
+        0 3px 10px
+        rgba(70,50,45,.18);
+}
+
+
+.memory-placeholder{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    width:100%;
+    height:170px;
+
+    background:#f4e7e2;
+
+    color:#c59f95;
+
+    font-size:30px;
+
+    overflow:hidden;
+
+    border-radius:0;
+}
+
+.memory-placeholder img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    border-radius:0;
+}
+
+
+.memory-film-caption{
+    padding-top:9px;
+
+    color:#795c55;
+
+    font-size:12px;
+
+    line-height:1.5;
+
+    text-align:center;
+}
+
+
+/* =========================================
+   INTRO
+   ========================================= */
+
+.memories-intro{
+    margin:24px 20px 4px;
+
+    color:#a1847d;
+
+    font-size:13px;
+
+    line-height:1.9;
+
+    text-align:center;
+}
+
+
+/* =========================================
+   MEMORY SECTION
+   ========================================= */
+
+.memory-section{
+    padding:
+        36px
+        20px
+        38px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:14px;
+
+    background:#fff4f0;
+}
+
+
+.memory-section-alt{
+    background:#f1e4df;
+}
+
+
+.memory-section-number{
+    margin:0;
+
+    color:#b28f87;
+
+    font-size:11px;
+
+    letter-spacing:3px;
+
+    text-align:center;
+}
+
+
+.memory-section-title{
+    margin:0 0 4px;
+
+    color:#795c55;
+
+    font-size:21px;
+
+    font-weight:600;
+
+    text-align:center;
+}
+
+
+/* =========================================
+   3D FLIP FRAME
+   ========================================= */
+
+.memory-flip-frame{
+    position:relative;
+
+    display:block;
+
+    width:100%;
+
+    max-width:290px;
+
+    height:330px;
+
+    padding:0;
+
+    border:0;
+
+    background:transparent;
+
+    perspective:1000px;
+
+    cursor:pointer;
+
+    -webkit-tap-highlight-color:transparent;
+}
+
+
+.memory-flip-inner{
+    position:relative;
+
+    display:block;
+
+    width:100%;
+
+    height:100%;
+
+    transform-style:preserve-3d;
+
+    -webkit-transform-style:preserve-3d;
+
+    transition:
+        transform .75s
+        cubic-bezier(
+            .4,
+            .2,
+            .2,
+            1
+        );
+}
+
+
+.memory-flip-frame.is-flipped
+.memory-flip-inner{
+    transform:
+        rotateY(180deg);
+}
+
+
+.memory-flip-front,
+.memory-flip-back{
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:12px;
+
+    border:
+        1px solid #ead5cf;
+
+    border-radius:5px;
+
+    background:#fffaf7;
+
+    box-shadow:
+        0 8px 22px
+        rgba(100,70,60,.12);
+
+    overflow:hidden;
+
+    backface-visibility:hidden;
+
+    -webkit-backface-visibility:hidden;
+}
+
+
+.memory-flip-front{
+    transform:
+        rotateY(0deg);
+}
+
+
+.memory-flip-back{
+    transform:
+        rotateY(180deg);
+
+    color:#795c55;
+
+    overflow-y:auto;
+}
+
+
+/* =========================================
+   PHOTO PLACEHOLDER
+   ========================================= */
+
+.memory-photo-placeholder{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:100%;
+
+    flex:1;
+
+    min-height:0;
+
+    background:#f4e7e2;
+
+    color:#c59f95;
+
+    font-size:48px;
+
+    overflow:hidden;
+}
+
+.memory-photo-placeholder img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+
+.memory-frame-caption{
+    display:block;
+
+    padding:
+        13px
+        4px
+        5px;
+
+    color:#795c55;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+    text-align:center;
+}
+
+
+.memory-frame-date{
+    margin:0 0 16px;
+
+    color:#b28f87;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    text-align:center;
+}
+
+
+.memory-frame-text{
+    display:block;
+
+    color:#765f59;
+
+    font-size:13px;
+
+    line-height:1.9;
+
+    text-align:left;
+}
+
+
+.memory-flip-hint{
+    margin:2px 0 0;
+
+    color:#a1847d;
+
+    font-size:12px;
+
+    text-align:center;
+}
+
+
+/* =========================================
+   END
+   ========================================= */
+
+.memories-end{
+    padding:
+        32px
+        20px
+        50px;
+
+    text-align:center;
+
+    background:#fffaf7;
+}
+
+
+.memories-end p{
+    margin:0;
+
+    color:#b28f87;
+
+    font-size:12px;
+
+    letter-spacing:1px;
+}
+
+
+/* =========================================
+   SMALL PHONE
+   ========================================= */
+
+@media (max-width:360px){
+
+    .memory-film-photo{
+        flex-basis:150px;
+
+        width:150px;
+    }
+
+
+    .memory-placeholder{
+        height:195px;
+    }
+
+
+    .memory-flip-frame{
+        max-width:270px;
+
+        height:310px;
+    }
+
+}

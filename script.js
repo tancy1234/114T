@@ -40,6 +40,9 @@ const urlParams = new URLSearchParams(
 const fromRandomVerse =
     urlParams.get("from") === "random-verse";
 
+const fromMemories =
+    urlParams.get("from") === "memories";
+
 
 onAuthStateChanged(
     auth,
@@ -57,7 +60,10 @@ onAuthStateChanged(
         // FROM RANDOM VERSE
         // =========================================
 
-        if (fromRandomVerse) {
+        if (
+            fromRandomVerse ||
+            fromMemories
+        ) {
 
             // User is logged in
             if (user) {

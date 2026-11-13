@@ -7,17 +7,24 @@
             window.location.search
         );
 
+        const fromRandomVerse =
+            urlParams.get("from") === "random-verse";
+
+        const fromMemories =
+            urlParams.get("from") === "memories";
+
         if (
-            urlParams.get("from") === "random-verse"
+            fromRandomVerse ||
+            fromMemories
         ) {
             document.documentElement.classList.add(
-                "from-random-verse"
+                "from-subpage"
             );
         }
     </script>
 
     <style>
-        html.from-random-verse #opening-page {
+        html.from-subpage #opening-page {
             display: none !important;
         }
     </style>
@@ -86,7 +93,7 @@
             </p>
 
             <button id="open-button">
-                Open
+                打开
             </button>
 
         </div>
@@ -104,7 +111,7 @@
 
             <h1>欢迎回来</h1>
 
-            <p>登录我们的 CG Group ♡</p>
+            <p>登录我们的 114T 网页 ♡</p>
 
 
             <!-- Google Login -->
@@ -239,7 +246,7 @@
         <nav class="navbar">
             <div class="navbar-inner">
                 <div class="navbar-logo">
-                    🌸 <span>CG Group</span>
+                    🌸 <span>114T</span>
                 </div>
 
                 <div class="navbar-actions">
@@ -309,11 +316,11 @@
 
                     <div class="profile-name">
                         <span class="profile-label">
-                            Username
+                            用户名
                         </span>
 
                         <h3 id="profile-username">
-                            Username
+                            用户名
                         </h3>
                     </div>
 
@@ -356,7 +363,7 @@
                         </div>
 
                         <div class="stat-label">
-                            Quiz Correct
+                            挑战问答答对次数
                         </div>
 
                     </div>
@@ -401,13 +408,13 @@
                 <div class="online-card-header">
                     <span>🟢</span>
                     <div>
-                        <strong>Online Now</strong>
-                        <small id="online-count">0 people online</small>
+                        <strong>在线</strong>
+                        <small id="online-count">0 用户在线</small>
                     </div>
                 </div>
 
                 <div id="online-list" class="online-list">
-                    <div class="online-loading">Loading...</div>
+                    <div class="online-loading">稍等...</div>
                 </div>
             </div>
 
@@ -417,9 +424,10 @@
 
             <div class="hero-decoration">🌷</div>
 
-            <h1>我们的 CG Group</h1>
+            <h1>我们的 114T</h1>
 
-            <p>欢迎来到我们的 CG 小天地 ♡</p>
+            <p>欢迎来到我们的 114T 小天地 ♡ <br>
+                我们在“1”起才有“14”</p>
 
         </header>
 
@@ -436,7 +444,7 @@
                 </div>
 
                 <div class="daily-login-title">
-                    <h2>Daily Login</h2>
+                    <h2>每日签到</h2>
 
                     <p>
                         每天回来签到一下吧 ♡
@@ -572,7 +580,7 @@
                 </div>
 
                 <div class="daily-verse-content">
-                    <div class="daily-verse-label">🌿 DAILY VERSE</div>
+                    <div class="daily-verse-label">🌿 每日经文</div>
 
                     <h2 id="daily-verse-title"></h2>
 
@@ -599,7 +607,7 @@
             <h2>关于我们</h2>
 
             <p>
-                这里是我们的 CG 小天地，
+                这里是我们的 114T 小天地，
                 记录我们一起成长、分享和服事的点点滴滴。
             </p>
 
@@ -610,7 +618,7 @@
 
             <div class="section-title">
 
-                <h2>Our Memories</h2>
+                <h2>我们的回忆</h2>
 
                 <p>
                     我们一起走过的日子 ♡
@@ -705,10 +713,10 @@
                 </div>
 
                 <div id="quiz-difficulty" class="quiz-difficulty">
-                    <button class="difficulty-button" data-difficulty="Easy">Easy</button>
-                    <button class="difficulty-button" data-difficulty="Medium">Medium</button>
-                    <button class="difficulty-button" data-difficulty="Hard">Hard</button>
-                    <button class="difficulty-button" data-difficulty="Insane">Insane</button>
+                    <button class="difficulty-button" data-difficulty="Easy">简单</button>
+                    <button class="difficulty-button" data-difficulty="Medium">普通</button>
+                    <button class="difficulty-button" data-difficulty="Hard">困难</button>
+                    <button class="difficulty-button" data-difficulty="Insane">非常困难</button>
                 </div>
 
                 <div id="quiz-area" class="quiz-area" style="display:none;">
@@ -748,13 +756,13 @@
                 <div class="leaderboard-decoration">🏆</div>
 
                 <div class="leaderboard-title">
-                    <h2>Leaderboard</h2>
+                    <h2>排行榜</h2>
                     <p>看看大家目前的 XP 排名 ♡</p>
                 </div>
 
                 <div id="leaderboard-list" class="leaderboard-list">
                     <div class="leaderboard-loading">
-                        Loading...
+                        稍等...
                     </div>
                 </div>
 
@@ -766,7 +774,7 @@
 
         <section class="content-section">
 
-            <h2>CG 成员</h2>
+            <h2>114T 成员</h2>
 
             <p>
                 这里之后可以介绍每一位 CG 成员。

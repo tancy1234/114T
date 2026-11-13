@@ -33,9 +33,17 @@ const db = window.firebaseDB;
 let currentUser = null;
 
 
+const urlParams = new URLSearchParams(
+    window.location.search
+);
+
+const fromRandomVerse =
+    urlParams.get("from") === "random-verse";
+
+
 onAuthStateChanged(
     auth,
-    function (user) {
+    async function (user) {
 
         currentUser = user;
 
@@ -43,6 +51,40 @@ onAuthStateChanged(
             "Firebase Auth State:",
             user
         );
+
+
+        // =========================================
+        // FROM RANDOM VERSE
+        // =========================================
+
+        if (fromRandomVerse) {
+
+            // User is logged in
+            if (user) {
+
+                console.log(
+                    "Returning from Random Verse"
+                );
+
+                await checkUserProfile(user);
+
+            }
+
+            // User is not logged in
+            else {
+
+                console.log(
+                    "Not logged in, showing login page"
+                );
+
+                openingPage.style.display = "none";
+                loginPage.style.display = "flex";
+                usernamePage.style.display = "none";
+                mainPage.style.display = "none";
+
+            }
+
+        }
 
     }
 );
@@ -72,9 +114,13 @@ const mainPage =
 const openButton =
     document.getElementById("open-button");
 
+
+
 // ================================
 // Opening Button
 // ================================
+
+
 
 openButton.addEventListener(
     "click",

@@ -289,7 +289,7 @@ randomVerseBack.addEventListener(
     function() {
 
         window.location.href =
-            "index.html";
+            "index.html?from=random-verse";
 
     }
 );

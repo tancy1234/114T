@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+
+    <script>
+        const urlParams = new URLSearchParams(
+            window.location.search
+        );
+
+        if (
+            urlParams.get("from") === "random-verse"
+        ) {
+            document.documentElement.classList.add(
+                "from-random-verse"
+            );
+        }
+    </script>
+
+    <style>
+        html.from-random-verse #opening-page {
+            display: none !important;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -46,6 +66,8 @@
 
     <script type="module" src="script.js"></script>
 </head>
+
+
 
 <body>
 

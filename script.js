@@ -46,6 +46,8 @@ const fromMemories =
 const fromMember =
     urlParams.get("from") === "member";
 
+const fromActivities =
+    urlParams.get("from") === "activities";
 
 onAuthStateChanged(
     auth,
@@ -66,7 +68,8 @@ onAuthStateChanged(
         if (
             fromRandomVerse ||
             fromMemories ||
-            fromMember
+            fromMember ||
+            fromActivities
         ) {
 
             // User is logged in
@@ -1810,3 +1813,76 @@ loadDailyVerse();
 randomVerseButton.addEventListener("click", function() {
     window.location.href = "random-verse.html";
 });
+
+
+
+document.querySelectorAll(".activity-description-wrapper").forEach(function(wrapper) {
+
+    const description =
+        wrapper.querySelector(".activity-description");
+
+    const button =
+        wrapper.querySelector(".activity-see-more");
+
+    // 检查文字是否真的超过显示范围
+    if (description.scrollHeight > description.clientHeight) {
+
+        button.style.display = "inline-block";
+
+    }
+
+    button.addEventListener("click", function() {
+
+        wrapper.classList.toggle("expanded");
+
+        if (wrapper.classList.contains("expanded")) {
+
+            button.textContent = "See Less ↑";
+
+        } else {
+
+            button.textContent = "See More ♡";
+
+        }
+
+    });
+
+});
+
+
+const activitiesList =
+    document.querySelector(".activities-list");
+
+const activitiesSeeMore =
+    document.getElementById("activities-see-more");
+
+if (activitiesList && activitiesSeeMore) {
+
+    activitiesSeeMore.addEventListener(
+        "click",
+        function() {
+
+            activitiesList.classList.toggle(
+                "expanded"
+            );
+
+            if (
+                activitiesList.classList.contains(
+                    "expanded"
+                )
+            ) {
+
+                activitiesSeeMore.textContent =
+                    "See Less ↑";
+
+            } else {
+
+                activitiesSeeMore.textContent =
+                    "See More ♡";
+
+            }
+
+        }
+    );
+
+}
